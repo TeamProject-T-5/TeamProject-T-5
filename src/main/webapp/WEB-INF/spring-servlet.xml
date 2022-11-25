@@ -31,7 +31,7 @@
     destroy-method="close">
        <property name="driverClassName"  value="oracle.jdbc.OracleDriver" />
        <property name="url"              value="jdbc:oracle:thin:@localhost:1521:xe" />
-       <property name="username"         value="board" />
+       <property name="username"         value="tboard" />
        <property name="password"         value="1234" />    
     </bean>
     
@@ -71,7 +71,6 @@
      <!-- Interceptor 설정 추가  -->
 
 <!--  공통 Interceptor -->
-    <!--
     <mvc:interceptors>       
        <mvc:interceptor>
          <mvc:mapping path="/**"/>
@@ -82,7 +81,7 @@
          </bean>       
        </mvc:interceptor>    
     </mvc:interceptors>
-    -->
+
 </beans>
 
 

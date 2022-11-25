@@ -66,7 +66,7 @@ CREATE  TABLE  BOARD
     , NREF          NUMBER( 5, 0 )    DEFAULT  0
 )
 
--- DROP TABLE BOARD;
+DROP TABLE BOARD;
 
 -------------------------------------
 --  자료실 위한 FILES 테이블

@@ -78,8 +78,7 @@
           sequence 와 (select max() form files) 가 다 동작하지 않는다, i 도 불가
         GET_FILENUM() - oracle 함수 
     -->
-    <insert id="FileInsert" >
-      <if test="filesList != null  and filesList != ''">
+    <insert id="FileInsert" >    
       <foreach collection="filesList" item="file"
          index="i" open="INSERT ALL" 
          close="SELECT * FROM DUAL" separator=" ">
@@ -90,8 +89,21 @@
 			 #{ file.fileext   },
 			 #{ file.sfilename }
           )
-      </foreach>      
-      </if>
+      </foreach>     
+    </insert>
+    
+    <insert id="FileUpdate" >    
+      <foreach collection="filesList" item="file"
+         index="i" open="INSERT ALL" 
+         close="SELECT * FROM DUAL" separator=" ">
+          INTO FILES VALUES (
+             GET_FILENUM(),
+			 #{ idx },
+			 #{ file.filename  },
+			 #{ file.fileext   },
+			 #{ file.sfilename }
+          )
+      </foreach>     
     </insert>
     
    <!-- 목록 조회 -->
