@@ -15,6 +15,8 @@ https://git-scm.com/downloads
 
 4.git remote -v -- 원격 리포지토리가 잘 들어와있나 확인
 
+4-1.git pull -- 최종 커밋한 파일을 해당브런치에서 불러오기 (5번과 동일)
+
 5.git checkout dev -- 해당 브랜치의 파일들을 로컬리포지토리에 불러오기
 
 6.git commit -m "작업한 내용 입력" -- 푸시 하기전 작업한 내용 입력
