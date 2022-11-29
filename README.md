@@ -6,7 +6,13 @@
 깃 다운로드
 https://git-scm.com/downloads
 
-깃허브 사용방법          ** 붙여넣기 : 
+깃허브 사용방법          ** 붙여넣기 : shift + insert
+0.git config --list    -- 해당 커맨드를 입력했을때 user.name, user.email이 있는지 확인 없으면 0-1 재입력
+
+0-1.git config --global user.name "아무이름"
+
+0-2.git config --global user.email "깃허브에 회원가입한 이메일 입력"
+
 1.git init -- 작업할 폴더(로컬 리포지토리)에 깃 폴더 생성
 
 2.git remote add TeamProject-T-5(1) https://github.com/TeamProject-T-5/TeamProject-T-5.git(2) -- (1)은 만든 원격리포지토리 이름 (2)는 원격리포지토리의 링크
