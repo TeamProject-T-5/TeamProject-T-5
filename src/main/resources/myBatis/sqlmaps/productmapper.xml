@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="Product">
+
+
+  <!--  상품 등록 -->
+    <insert id="ProductEnroll"
+    	>
+      INSERT INTO PRODUCT(
+      PRODUCT_NUMBER, PRODUCT_NAME, PRODUCT_PRICE,
+      PRODUCT_STOCK, PRODUCT_DESC, CATEGORY_CODE)
+      VALUES(
+      ( SELECT NVL(MAX(PRODUCT_NUMBER),0)+1 FROM PRODUCT ), 
+      #{product_name,jdbcType=VARCHAR}, #{product_price},
+      #{product_stock}, #{product_desc,jdbcType=VARCHAR}, #{category_code,jdbcType=VARCHAR} 
+      )   
+       </insert>
+   
+   <!-- 카테고리 추가 -->
+   
+    <insert id="cateEnroll">
+      INSERT INTO PRODUCT_CATEGORY(
+      CATEGORY_CODE,
+      CATEGORYNAME
+      )VALUES(
+      #{CATEGORY_CODE} ,
+      #{CATEGORYNAME}
+      )
+    </insert>    
+      
+     <!--  상품 목록 당기기 -->      
+      <select id = "ProductList"
+      	resultType="com.mealkit.product.ProductVo">
+      	SELECT 
+      	PRODUCT_NUMBER,
+		PRODUCT_NAME,
+		CATEGORY_CODE,
+		PRODUCT_PRICE,
+		PRODUCT_STOCK,
+		PRODUCT_DESC
+		FROM
+			PRODUCT
+		ORDER BY PRODUCT_NUMBER
+      </select>
+     
+     <!-- 한식 리스트 -->
+      <select id="koreaList" resultType="com.mealkit.product.ProductVo">
+      	SELECT
+      		PRODUCT_NUMBER,
+			PRODUCT_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_STOCK,
+			PRODUCT_DESC		
+  		FROM 
+  		PRODUCT
+  		WHERE CATEGORY_CODE = '01'
+      
+      
+      </select>
+      
+        <!-- 중식 리스트 -->
+      <select id="chinaList" resultType="com.mealkit.product.ProductVo">
+      	SELECT
+      		PRODUCT_NUMBER,
+			PRODUCT_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_STOCK,
+			PRODUCT_DESC		
+  		FROM 
+  		PRODUCT
+  		WHERE CATEGORY_CODE = '02'
+      
+      
+      </select>
+      
+        <!-- 일식 리스트 -->
+      <select id="japList" resultType="com.mealkit.product.ProductVo">
+      	SELECT
+      		PRODUCT_NUMBER,
+			PRODUCT_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_STOCK,
+			PRODUCT_DESC		
+  		FROM 
+  		PRODUCT
+  		WHERE CATEGORY_CODE = '03'
+      
+      
+      </select>
+      
+        <!-- 양식 리스트 -->
+      <select id="euList" resultType="com.mealkit.product.ProductVo">
+      	SELECT
+      		PRODUCT_NUMBER,
+			PRODUCT_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_STOCK,
+			PRODUCT_DESC		
+  		FROM 
+  		PRODUCT
+  		WHERE CATEGORY_CODE = '04'
+      
+      
+      </select>
+      
+        <!-- 이벤트 리스트 -->
+      <select id="eventList" resultType="com.mealkit.product.ProductVo">
+      	SELECT
+      		PRODUCT_NUMBER,
+			PRODUCT_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_STOCK,
+			PRODUCT_DESC		
+  		FROM 
+  		PRODUCT
+  		WHERE CATEGORY_CODE = '05'
+      
+      
+      </select>
+      
+      <!-- 
+      	select 
+      	a.product_name, a.product_price,
+      	a.product_stock, a.product_desc
+      	from   product  a left outer join
+      	product_category b on a.category_code = b.category_code
+      	where product_number = #{product_number}
+       -->
+      
+     <!-- 한식 상세 페이지 -->
+  	<select id="koreaInfo" resultType="com.mealkit.product.ProductVo">
+  	
+  		SELECT 
+  		PRODUCT_NAME,  PRODUCT_PRICE, 
+  		PRODUCT_STOCK, PRODUCT_DESC
+  		FROM 
+  		PRODUCT
+  		WHERE PRODUCT_NUMBER = #{ product_number }   		  		
+  	
+  	</select>  	 	 	
+     
+    <!-- 중식 상세 페이지 -->
+  	<select id="chinaInfo" resultType="com.mealkit.product.ProductVo">
+  	
+  		SELECT 
+  		PRODUCT_NAME,  PRODUCT_PRICE, 
+  		PRODUCT_STOCK, PRODUCT_DESC
+  		FROM 
+  		PRODUCT
+  		WHERE PRODUCT_NUMBER = #{ product_number }   		  		
+  	
+  	</select>  	 	 	
+      
+      
+    <!-- 일식 상세 페이지 -->       
+  	<select id="japInfo" resultType="com.mealkit.product.ProductVo">
+  	
+  		SELECT 
+  		PRODUCT_NAME,  PRODUCT_PRICE, 
+  		PRODUCT_STOCK, PRODUCT_DESC
+  		FROM 
+  		PRODUCT
+  		WHERE PRODUCT_NUMBER = #{ product_number }   		  		
+  	
+  	</select>  	 	 	
+      
+      
+     <!-- 양식 상세 페이지 -->
+  	<select id="euInfo" resultType="com.mealkit.product.ProductVo">
+  	
+  		SELECT 
+  		PRODUCT_NAME,  PRODUCT_PRICE, 
+  		PRODUCT_STOCK, PRODUCT_DESC
+  		FROM 
+  		PRODUCT
+  		WHERE PRODUCT_NUMBER = #{ product_number }   		  		
+  	
+  	</select>
+  	
+  	<!-- 이벤트식 상세 페이지 -->
+  	<select id="eventInfo" resultType="com.mealkit.product.ProductVo">
+  	
+  		SELECT 
+  		PRODUCT_NAME,  PRODUCT_PRICE, 
+  		PRODUCT_STOCK, PRODUCT_DESC
+  		FROM 
+  		PRODUCT
+  		WHERE PRODUCT_NUMBER = #{ product_number }   		  		
+  	
+  	</select>    	 	 	
+       
+      
+     <!--  제품 정보 수정 -->
+      <update id="productModify">
+  	
+  		UPDATE PRODUCT SET 
+  		PRODUCT_NAME = #{ product_number, jdbcType=VARCHAR },
+  		PRODUCT_PRICE = #{product_price}, 
+  		PRODUCT_STOCK = #{product_stock},
+  		PRODUCT_DESC = #{product_desc, jdbcType=VARCHAR },
+  		UPDATEDATE=SYSDATE where PRODUCT_NUMBER = #{ product_number, jdbcType=VARCHAR }
+  	
+  		</update>       
+      
+  	
+<!--  목록 삭제 -->
+  <delete  id="deleteProduct"> 
+      
+    DELETE FROM PRODUCT WHERE product_number = #{ product_number}
+       
+  </delete>
+      
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
