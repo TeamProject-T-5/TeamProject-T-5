@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 
 <html>
@@ -96,8 +97,7 @@ table.type01 td {
 					<th>작성자</th>
 					<th>내용</th>
 					<th>작성날짜</th>
-					<sec:authentication property="principal.username" var="user_id" />
-		<c:if test="${user_id eq infoBoardDetail.member_id || user_id eq 'admin'}"><th>수정/삭제</th></c:if>
+					<th style="width: 40px">수정/삭제</th>
 				</tr>			
 			<c:forEach  var="getInfoReplyList" items="${ getInfoReplyList }"> 
 				<tr>
@@ -107,7 +107,7 @@ table.type01 td {
 					
 						<fmt:formatDate	value="${ getInfoReplyList.info_reply}" pattern="yyyy-MM-dd" /></td>
 					<sec:authentication property="principal.username" var="user_id" />
-		<c:if test="${user_id eq infoBoardDetail.member_id || user_id eq 'admin'}">
+					<c:if test="${user_id eq getInfoReplyList.member_id || user_id eq 'admin'}">
 					<td style="width: 40px">
 						<a class="btn btn-primary btn-sm" href="/member/infoReplyUpdateForm/${getInfoReplyList.info_reply_no}">수정</a>
 						<a class="btn btn-danger btn-sm" href="/member/infoReplyDelete/${getInfoReplyList.info_reply_no}">삭제</a>

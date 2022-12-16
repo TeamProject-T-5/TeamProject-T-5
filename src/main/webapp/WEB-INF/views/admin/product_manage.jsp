@@ -8,16 +8,17 @@
 <meta charset="UTF-8">
 <title>상품목록/상품관리</title>
 <style>
-#wrap{}
-#header{background-dolor : #fff}
+	ul, li{ 
+		list-style: none;
+	 }
 
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
-	<div id="wrap">
+	<div class="container">
 		<header id ="header">
-			<div class="container">              
+			<div>              
 				    <div class="header clearfix">
 					    <ul class="list1 clearfix">
 						    <li class="home"><a href="/">홈으로</a></li>					
@@ -28,8 +29,9 @@
                             </ul>
                     </div>                   
 			</div>
-		</header><!-- header -->
+		</header>
 	</div>
+	<div class="container">
 	<table>
        <tr>
        </tr>
@@ -58,10 +60,11 @@
        </c:forEach>
        
      </table>
+     </div>
 	
            
 
- <div id="new_product">
+ <div class="container" id="new_product">
     <div class="new_btn">
         <ul>
             <li class="new_btn"><a href="/admin/newproduct_manage">상품추가</a></li>
