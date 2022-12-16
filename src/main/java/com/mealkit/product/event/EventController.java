@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mealkit.foodpaging.Criteria;
+import com.mealkit.foodpaging.PageMaker;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -23,10 +25,15 @@ public class EventController {
 	
 	// 이벤트식 분류 페이지
 	@RequestMapping("product/product_event_list")
-	public  String event(ProductVo productVo, Model model) {
+	public  String event(ProductVo productVo, Model model, Criteria cri) {
 		
-		List<ProductVo> eventList = productService.eventList();
-		System.out.println("eventList" + eventList);
+		List<ProductVo> eventList = productService.eventList(cri);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(productService.listEventCount());
+		System.out.println(pageMaker.getTotalCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("eventList", eventList);
 		return "product/event/product_event_list";
 	}

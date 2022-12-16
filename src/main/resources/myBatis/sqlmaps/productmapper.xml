@@ -49,79 +49,162 @@
       </select>
      
      <!-- 한식 리스트 -->
-      <select id="koreaList" resultType="com.mealkit.product.ProductVo">
-      	SELECT
-      		PRODUCT_NUMBER,
+     <select id="koreaList" resultType="com.mealkit.product.ProductVo">
+     	SELECT 
+     		PRODUCT_NUMBER,
 			PRODUCT_NAME,
 			PRODUCT_PRICE,
 			PRODUCT_STOCK,
-			PRODUCT_DESC		
-  		FROM 
-  		PRODUCT
-  		WHERE CATEGORY_CODE = '01'
-      
-      
+			PRODUCT_DESC,
+			CATEGORY_CODE
+		FROM ( 
+	        SELECT 
+	        PRODUCT_NUMBER,
+	        PRODUCT_NAME,
+	        PRODUCT_PRICE,
+	        PRODUCT_STOCK,
+      		PRODUCT_DESC,
+      		CATEGORY_CODE,
+            ROW_NUMBER() OVER(ORDER BY PRODUCT_NUMBER DESC) AS RNUM
+            FROM PRODUCT) FR
+		WHERE RNUM BETWEEN #{ rowStart } AND #{ rowEnd } AND CATEGORY_CODE = 01
+		ORDER BY PRODUCT_NUMBER DESC 
       </select>
       
-        <!-- 중식 리스트 -->
+      <!-- 한식 카운트 -->
+      <select id="listCount" resultType="int">
+		  <![CDATA[
+            SELECT COUNT(PRODUCT_NUMBER)
+			FROM PRODUCT
+			WHERE CATEGORY_CODE = 01 AND PRODUCT_NUMBER > 0
+		  ]]>
+	  </select>
+    
+      <!-- 중식 리스트 -->
       <select id="chinaList" resultType="com.mealkit.product.ProductVo">
-      	SELECT
-      		PRODUCT_NUMBER,
+      	SELECT 
+     		PRODUCT_NUMBER,
 			PRODUCT_NAME,
 			PRODUCT_PRICE,
 			PRODUCT_STOCK,
-			PRODUCT_DESC		
-  		FROM 
-  		PRODUCT
-  		WHERE CATEGORY_CODE = '02'
-      
-      
+			PRODUCT_DESC,
+			CATEGORY_CODE
+		FROM ( 
+	        SELECT 
+	        PRODUCT_NUMBER,
+	        PRODUCT_NAME,
+	        PRODUCT_PRICE,
+	        PRODUCT_STOCK,
+      		PRODUCT_DESC,
+      		CATEGORY_CODE,
+            ROW_NUMBER() OVER(ORDER BY PRODUCT_NUMBER DESC) AS RNUM
+            FROM PRODUCT) FR
+		WHERE RNUM BETWEEN #{ rowStart } AND #{ rowEnd } AND CATEGORY_CODE = 02
+		ORDER BY PRODUCT_NUMBER DESC 
       </select>
+      
+      <!-- 중식 카운트 -->
+      <select id="listChinaCount" resultType="int">
+		  <![CDATA[
+            SELECT COUNT(PRODUCT_NUMBER)
+			FROM PRODUCT
+			WHERE CATEGORY_CODE = 02 AND PRODUCT_NUMBER > 0
+		  ]]>
+	  </select>
       
         <!-- 일식 리스트 -->
       <select id="japList" resultType="com.mealkit.product.ProductVo">
-      	SELECT
-      		PRODUCT_NUMBER,
+      SELECT 
+     		PRODUCT_NUMBER,
 			PRODUCT_NAME,
 			PRODUCT_PRICE,
 			PRODUCT_STOCK,
-			PRODUCT_DESC		
-  		FROM 
-  		PRODUCT
-  		WHERE CATEGORY_CODE = '03'
-      
-      
+			PRODUCT_DESC,
+			CATEGORY_CODE
+		FROM ( 
+	        SELECT 
+	        PRODUCT_NUMBER,
+	        PRODUCT_NAME,
+	        PRODUCT_PRICE,
+	        PRODUCT_STOCK,
+      		PRODUCT_DESC,
+      		CATEGORY_CODE,
+            ROW_NUMBER() OVER(ORDER BY PRODUCT_NUMBER DESC) AS RNUM
+            FROM PRODUCT) FR
+		WHERE RNUM BETWEEN #{ rowStart } AND #{ rowEnd } AND CATEGORY_CODE = 03
+		ORDER BY PRODUCT_NUMBER DESC 
       </select>
-      
+ 
+      <!-- 일식 카운트 -->
+      <select id="listJapCount" resultType="int">
+		  <![CDATA[
+            SELECT COUNT(PRODUCT_NUMBER)
+			FROM PRODUCT
+			WHERE CATEGORY_CODE = 03 AND PRODUCT_NUMBER > 0
+		  ]]>
+	  </select>
         <!-- 양식 리스트 -->
       <select id="euList" resultType="com.mealkit.product.ProductVo">
-      	SELECT
-      		PRODUCT_NUMBER,
+      	SELECT 
+     		PRODUCT_NUMBER,
 			PRODUCT_NAME,
 			PRODUCT_PRICE,
 			PRODUCT_STOCK,
-			PRODUCT_DESC		
-  		FROM 
-  		PRODUCT
-  		WHERE CATEGORY_CODE = '04'
-      
-      
+			PRODUCT_DESC,
+			CATEGORY_CODE
+		FROM ( 
+	        SELECT 
+	        PRODUCT_NUMBER,
+	        PRODUCT_NAME,
+	        PRODUCT_PRICE,
+	        PRODUCT_STOCK,
+      		PRODUCT_DESC,
+      		CATEGORY_CODE,
+            ROW_NUMBER() OVER(ORDER BY PRODUCT_NUMBER DESC) AS RNUM
+            FROM PRODUCT) FR
+		WHERE RNUM BETWEEN #{ rowStart } AND #{ rowEnd } AND CATEGORY_CODE = 04
+		ORDER BY PRODUCT_NUMBER DESC 
+
       </select>
       
+      <!-- 양식 카운트 -->
+      <select id="listEuCount" resultType="int">
+		  <![CDATA[
+            SELECT COUNT(PRODUCT_NUMBER)
+			FROM PRODUCT
+			WHERE CATEGORY_CODE = 04 AND PRODUCT_NUMBER > 0
+		  ]]>
+	  </select>
         <!-- 이벤트 리스트 -->
       <select id="eventList" resultType="com.mealkit.product.ProductVo">
-      	SELECT
-      		PRODUCT_NUMBER,
+      		SELECT 
+     		PRODUCT_NUMBER,
 			PRODUCT_NAME,
 			PRODUCT_PRICE,
 			PRODUCT_STOCK,
-			PRODUCT_DESC		
-  		FROM 
-  		PRODUCT
-  		WHERE CATEGORY_CODE = '05'
-      
-      
+			PRODUCT_DESC,
+			CATEGORY_CODE
+		FROM ( 
+	        SELECT 
+	        PRODUCT_NUMBER,
+	        PRODUCT_NAME,
+	        PRODUCT_PRICE,
+	        PRODUCT_STOCK,
+      		PRODUCT_DESC,
+      		CATEGORY_CODE,
+            ROW_NUMBER() OVER(ORDER BY PRODUCT_NUMBER DESC) AS RNUM
+            FROM PRODUCT) FR
+		WHERE RNUM BETWEEN #{ rowStart } AND #{ rowEnd } AND CATEGORY_CODE = 05
+		ORDER BY PRODUCT_NUMBER DESC 
       </select>
+      <!-- 이벤트 카운트 -->
+      <select id="listEventCount" resultType="int">
+		  <![CDATA[
+            SELECT COUNT(PRODUCT_NUMBER)
+			FROM PRODUCT
+			WHERE CATEGORY_CODE = 05 AND PRODUCT_NUMBER > 0
+		  ]]>
+	  </select>
       
       <!-- 
       	select 

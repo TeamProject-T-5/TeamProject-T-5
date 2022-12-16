@@ -10,6 +10,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mealkit.foodpaging.Criteria;
+
 
 
 
@@ -25,16 +27,14 @@ public class ProductServiveImpl implements ProductService {
 	@Override
 	public void ProductEnroll(ProductVo product) {
 		productDao.ProductEnroll(product);
-		
 	}
-
+	
 	// 상품 목록
 	@Override
 	public List<ProductVo> productGetList() {
 		List<ProductVo> productList = productDao.productGetList();
 		return productList;
 	}
-	
 	
 	// 상품 삭제
 	@Override
@@ -45,39 +45,73 @@ public class ProductServiveImpl implements ProductService {
 	
 		//한식 페이지
 		@Override
-		public List<ProductVo> koreaList() {
-			List<ProductVo> koreaList = productDao.koreaList();
+		public List<ProductVo> koreaList(Criteria cri) {
+			List<ProductVo> koreaList = productDao.koreaList(cri);
 			return koreaList;
 		}
-
-		//중식 페이지
+		// 한식 페이징
 		@Override
-		public List<ProductVo> chinaList() {
-			List<ProductVo> chinaList = productDao.chinaList();
+		public int listCount() {
+			
+			return productDao.listCount();
+		}
+		// 중식 페이지
+		@Override
+		public List<ProductVo> chinaList(Criteria cri) {
+			List<ProductVo> chinaList = productDao.chinaList(cri);
 			return chinaList;
+		}
+		
+		// 중식 페이징
+		@Override
+		public int listChinaCount() {
+			
+			return productDao.listChinaCount();
 		}
 
 		//일식 페이지
 		@Override
-		public List<ProductVo> japList() {
-			List<ProductVo> japList = productDao.japList();
+		public List<ProductVo> japList(Criteria cri) {
+			List<ProductVo> japList = productDao.japList(cri);
 			return japList;
+		}
+		
+		// 일식 페이징
+		@Override
+		public int listJapCount() {
+			
+			return productDao.listJapCount();
 		}
 
 		//양식 페이지
 		@Override
-		public List<ProductVo> euList() {
-			List<ProductVo> euList = productDao.euList();
+		public List<ProductVo> euList(Criteria cri) {
+			List<ProductVo> euList = productDao.euList(cri);
 			return euList;
 		}
+		
+		// 양식 페이징 
+		@Override
+		public int listEuCount() {
+			
+			return productDao.listEuCount();
+		}
+
 
 		//이벤트식 페이지
 		@Override
-		public List<ProductVo> eventList() {
-			List<ProductVo> eventList = productDao.eventList();
+		public List<ProductVo> eventList(Criteria cri) {
+			List<ProductVo> eventList = productDao.eventList(cri);
 			return eventList;
 		}
-	
+		
+		// 이벤트 페이징
+		@Override
+		public int listEventCount() {
+			
+			return productDao.listEventCount();
+		}
+		
 		// 한식상세 정보
 		@Override
 		public ProductVo koreaInfo(int product_number) {
@@ -106,6 +140,7 @@ public class ProductServiveImpl implements ProductService {
 			ProductVo euInfo = productDao.euInfo(product_number);
 			return euInfo;
 		}
+		
 
 		// 이벤트상세 정보
 		@Override
@@ -113,17 +148,22 @@ public class ProductServiveImpl implements ProductService {
 			ProductVo eventInfo = productDao.eventInfo(product_number);
 			return eventInfo;
 		}
-
-		
-		
-		
-
 		// 카테고리	
 			@Override
 			public List<ProductCategory> cateList() {
 				// TODO Auto-generated method stub
 				return null;
 			}
+
+
+
+
+
+
+
+
+
+
 
 	
 

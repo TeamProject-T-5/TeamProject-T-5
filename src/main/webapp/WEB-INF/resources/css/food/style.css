@@ -4,6 +4,10 @@
 	    box-sizing: border-box;
 	  }
 	  
+	  html{
+	  	background-color: #F3EFE0;
+	  }
+	  
 	  body {
 	  	margin: 0;
 	  	padding: 0;
@@ -16,6 +20,8 @@
 	  
 	  .navbar ul{
 	    float: right;
+	    top: 30px;
+ 	  	position: relative;
 	  }
 	  
 	  .navbar li{
@@ -27,21 +33,21 @@
 	  .navbar a{
 	    text-decoration: none;
 	    color: black;
-	    font-style: bold;
-	    font-size: 13px;
+	    font-size: 20px;
 	  }
 	
 	  .logo{
 	    	position: relative;
-	    	top: -42px;
-	    	left: 72px;
+	    	top: -30px;
+	    	left: 110px;
 	    	text-decoration: none;
+	    	font-size: 30px;
 	  }
 	
 	 	.icon{
 	 		position: relative;
-	 		top: -73px;
-	 		left: 29px;
+	 		top: -71px;
+	 		left: 60px;
 	 	}
 	  
 		.sidemenu {
@@ -90,7 +96,7 @@
 	    width: 1000px;
 	    text-align: center;
 	    
-	    
+	   
 	  }
 
 	.koreanfood img{
@@ -106,47 +112,17 @@
 	    float: left;
 	    position: relative;
 	 	top: 100px;
+	 	left: 25px;
+	 	font-size: 20px;
 	  }
 	  
-	  .pagemove{
-	  	position: relative;
-	  	top: 100px;
-	  	left: 300px;
-	  	
-	  	
+	  .food1{
+	  	padding: 40px;
 	  }
 	  
-	  .pagemove ul{
-	  	text-align: center;
-	  	
+	  .koreanfood p{
+	  	font-size: 20px;
 	  }
-	  
-	  .pagemove li{
-	  	vertical-align: middle;
-	  	list-style: none;
-	  	display:inline-block;
-	  	min-width: 26px;
-	  	
-	  	
-	  }
-	  
-	  .pagemove a{
-	  	text-decoration-line : none;
-	  }
-	  
-	  .pagemove span{
-    	background: skyblue;
-    	border-radius: 20px;
-	  	display: block;
-    	height: 30px;
-    	width: 30px;
-   		color: white;
-    	line-height: 30px;
-    	
-	  }
-	  
-	  .pagemove circle{
-	  	display: inline-block;
-	  }
+	
 	  
 	  

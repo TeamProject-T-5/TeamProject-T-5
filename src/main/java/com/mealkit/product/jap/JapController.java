@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mealkit.foodpaging.Criteria;
+import com.mealkit.foodpaging.PageMaker;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -23,10 +25,16 @@ public class JapController {
 	
 	// 일식 분류 페이지
 	@RequestMapping("product/product_jap_list")
-	public  String jap(ProductVo productVo, Model model) {
+	public  String jap(ProductVo productVo, Model model, Criteria cri) {
 		
-		List<ProductVo> japList = productService.japList();
-		System.out.println("japList" + japList);
+		List<ProductVo> japList = productService.japList(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(productService.listJapCount());
+		System.out.println(pageMaker.getTotalCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("japList", japList);
 		return "product/jap/product_jap_list";
 	}

@@ -7,89 +7,56 @@
 <head>
 <meta charset="UTF-8">
 <title>일식</title>
-<link rel="stylesheet" href="/css/product/jap/jap_list.css">
+<link rel="stylesheet" href="/css/food/style.css">
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
+<style type="text/css">
+		li {
+		list-style: none;
+		padding: 6px;
+		float: left;
+	}
+</style>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/include/nav.jsp" %>
-  <c:forEach var="japList"  items="${ japList }">
-        <tr>	
-		 <a href="/product/jap/detail/jap_detail?product_number=${japList.product_number}">${japList.product_name}</a>
-		 <td>${japList.product_name}</td>
-		 
-		 <td>${japList.product_price}</td>
-		   
-		 <td>
-		  
-		  
-		 </td>       
-        </tr>
-       
-       </c:forEach>
-
-
-
-
-	<div class="koreanfood">
-	<h1>일식</h1>
-	<ul>
-        <a href="#">
-        <img src="../images(kor)/돼지국밥.jpg">
-        </a>
-        <p>돼지국밥</p>
-        <p>7,000</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-	     </div>
-      </ul>
-	
-	<ul>
-		<a href="#">
-        <img src="../images(kor)/감자탕.jpg">
-        </a>
-        <p>감자탕</p>
-        <p>8,000</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-regular fa-star" style="color:green"></i>
-	     </div>
-	</ul>
-    
-    <ul>
-    	<a href="#">
-        <img src="../images(kor)/갈비탕.jpg">
-        </a>
-        <p>갈비탕</p>
-        <p>7,500</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-regular fa-star" style="color:green"></i>
-	     </div>
-    </ul>
-     
-      <div class="pagemove">
-	      <ul>
-	      	<li><span>1</span></li>
-	      	<li><a href="koreanfood2/koreanfood2.html">2</a></li>
-	      	<li><a href="koreanfood3/koreanfood3.html">3</a></li>
-	      	<li><a href="koreanfood4/koreanfood4.html">4</a></li>
-	      	<a href="koreanfood2/koreanfood2.html"><i class="fa-solid fa-caret-right" style="font-size: 30px; vertical-align: middle; color: gray;"></i></a>
-	      </ul>
-	  </div>
-      
-      <div class="clearfix"></div>
-    </div>
-
+<%@include file="/WEB-INF/views/include/nav.jsp" %>
+    <div class="koreanfood">
+    <c:forEach var="japList"  items="${ japList }">
+    	<div>
+	    	<ul class="food1">
+	        <li>
+	        <a href="/product/jap/detail/jap_detail?product_number=${japList.product_number}">
+	        <img src="/img/Korean_Food/Gopchang/곱창전골.jpg">
+	        </a>
+	        <div><a href="/product/jap/detail/jap_detail?product_number=${japList.product_number}">${japList.product_name}</a></div>
+	        <div>${japList.product_price}</div>
+	       
+			     <i class="fa-solid fa-star" style="color:green"></i>
+			     <i class="fa-solid fa-star" style="color:green"></i>
+			     <i class="fa-solid fa-star" style="color:green"></i>
+			     <i class="fa-solid fa-star" style="color:green"></i>
+			     <i class="fa-solid fa-star" style="color:green"></i>
+	        </li>
+	        </ul>
+        </div>
+        </c:forEach>
+        
+   		<!-- 페이징  -->
+		<div>
+		  <ul style="width: 700px; text-align: center;">
+		    <c:if test="${pageMaker.prev}">
+		    	<li><a href="/product/product_jap_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+		    </c:if> 
+		
+		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+		    	<li><a href="/product/product_jap_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+		    </c:forEach>
+		
+		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		    	<li><a href="/product/product_jap_list{pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+		    </c:if> 
+		  </ul>
+		 </div> 
+	 </div>
 </body>
 <script>
 	function chk_form() {

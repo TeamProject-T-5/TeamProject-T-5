@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mealkit.foodpaging.Criteria;
+import com.mealkit.foodpaging.PageMaker;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -22,17 +22,23 @@ public class KoreaController {
 	private ProductService productService;
 		
 	
-	// ÇÑ½Ä ºÐ·ù ÆäÀÌÁö
+	// ï¿½Ñ½ï¿½ ï¿½Ð·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("product/product_korea_list")
-	public  String korea(ProductVo productVo, Model model) {
+	public  String korea(ProductVo productVo, Model model, Criteria cri) {
 		
-		List<ProductVo> koreaList = productService.koreaList();
-		System.out.println("korealist" + koreaList);
+		List<ProductVo> koreaList = productService.koreaList(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(productService.listCount());
+		System.out.println(pageMaker.getTotalCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("koreaList", koreaList);
 		return "product/korea/product_korea_list";
 	}
 			
-	// ÇÑ½Ä »ó¼¼ ÆäÀÌÁö	   product/korea/detail/korea_detail?product_number=1
+	// ï¿½Ñ½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	   product/korea/detail/korea_detail?product_number=1
 	@RequestMapping("/product/korea/detail/korea_detail")
 	public String koreadetail(int product_number, Model model) {
 				ProductVo koreaInfo = productService.koreaInfo(product_number);
@@ -42,7 +48,7 @@ public class KoreaController {
 		}
 			
 			
-			// ÇÑ½Ä -> Àå¹Ù±¸´Ï
+			// ï¿½Ñ½ï¿½ -> ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
 			@PostMapping("product/product_korea_list")
 			public String koreacart() {
 				
