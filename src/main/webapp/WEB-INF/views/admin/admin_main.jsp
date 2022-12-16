@@ -7,27 +7,36 @@
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
 <title>관리자 페이지</title>
 <style>
-#wrap{}
-#header{background-dolor : #fff}
-#header.home{
-	
-	width: 25%;
-	height: 100%;
-	float: left;
-	color: red;}
-	
-.admin_navi_wrap li a:link {color: black;}
-.admin_navi_wrap li a:visited {color: black;}
-.admin_navi_wrap li a:active {color: black;}
-.admin_navi_wrap li a:hover {color: black;}	
-	
+	h2{
+	 	text-align: center;
+	 	position: relative;
+	 	top: 50px;
+	 	font-size: 30px;
+	 }
+	 
+	.management a{
+		    width: 250px; 
+		    margin: 0px 40px;
+		    border: none;
+		    background-color: #1673ea;
+		    color: #fff; 
+		    font-size: 30px; 
+		    font-weight: bold;
+		    float: left;
+		    text-align: center;
+		    line-height: 250px;
+		    position: relative;
+		    left: 400px;
+		    top: 200px;
+		    white-space: nowrap;
+		    table-layout:fixed
+		}
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
-	<div id="wrap">
-		<header id ="header">
-			<div class="container">                                
+
+			<div class="management">                                
                     <div class="admin">
                         <h2>관리자페이지</h2>
                     </div>
@@ -37,8 +46,6 @@
 						<a class="salse_manage" href="#" >매출관리(미구현)</a> 
 					</div>
 			</div>
-		</header><!-- header -->
-	</div>
 	
 
 </body>
