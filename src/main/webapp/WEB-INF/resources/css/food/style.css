@@ -99,10 +99,11 @@
 	   
 	  }
 
-	.koreanfood img{
-	    width: 225px;
+	 img{
+	    vertical-align: middle;
+	    position: relative;
 	    height: 225px;
-	   
+	    width: 225px;
 	  }
 	  
 	  
@@ -124,5 +125,36 @@
 	  	font-size: 20px;
 	  }
 	
-	  
-	  
+	 .image_wrap{
+	 	position: relative;
+	 	left: 25%;
+	 	top: 100px;
+	 	float: left;
+	 }
+	 
+	 .image_wrap a{
+	 	position: relative;
+	 	right: 150px;
+	 	top: 45px;
+	 	vertical-align: bottom;
+	 }
+	 
+	 .price{
+	 	position: relative;
+	 	top: 70px;
+	 	left: 110px;
+	 }
+	 
+	 .paging1{
+	 	
+	 }
+	 
+	 .paging2{
+	 	position: relative;
+	 	left: 450px;
+	 	top: 140px;
+	 }
+	 
+	 .paging3{
+	 
+	 }

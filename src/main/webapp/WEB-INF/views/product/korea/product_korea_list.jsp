@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>한식</title>
 <link rel="stylesheet" href="/css/food/style.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
 <style type="text/css">
 	li {
@@ -20,38 +24,41 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
+
+   <div class= "kor1">
+	  <c:forEach var="productImg"  items="${ productImgList }">        
+									
+			 <div class= "image_wrap"
+        		data-filename="${productImg.fileName}"
+				data-productnumber="${productImg.product_number}"
+			    data-path="${productImg.uploadPath}" 
+			    data-uuid="${productImg.uuid}" 
+			    >	
+			   <img>
+			   <a href="/product/korea/detail/korea_detail?product_number=${productImg.product_number}">${productImg.product_name}</a>
+		       <div class = "price">
+		       ${productImg.product_price}
+		       </div> 
+		     </div>
+       
+       </c:forEach>
+  </div>
+  
+    
+     
     <div class="koreanfood">
-    <c:forEach var="koreaList"  items="${ koreaList }">
-    	<div>
-	    	<ul class="food1">
-	        <li>
-	        <a href="/product/korea/detail/korea_detail?product_number=${koreaList.product_number}">
-	        <img src="/img/Korean_Food/Gopchang/곱창전골.jpg">
-	        </a>
-	        <div><a href="/product/korea/detail/korea_detail?product_number=${koreaList.product_number}">${koreaList.product_name}</a></div>
-	        <div>${koreaList.product_price}</div>
-	       
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-	        </li>
-	        </ul>
-        </div>
-    </c:forEach>
 		<div>
 		  <ul style="width: 700px; text-align: center;">
 		    <c:if test="${pageMaker.prev}">
-		    	<li><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+		    	<li class= "paging1"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 		    </c:if> 
 		
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-		    	<li><a href="/product/product_korea_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+		    	<li class= "paging2"><a href="/product/product_korea_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
 		    </c:forEach>
 		
 		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		    	<li><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+		    	<li class= "paging3"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 		    </c:if> 
 		  </ul>
 		 </div> 
@@ -63,4 +70,38 @@
 	}
 	
 </script>
+
+<script>
+
+$(document).ready(function(){
+	
+	
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		
+		if(bobj.data("productnumber")){
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			
+		} else {
+			
+			$(this).find("img").attr('src', '/resources/image/nothing.png');
+			
+		}
+
+		
+	});		
+	
+});	
+
+
+
+</script>	
 </html>

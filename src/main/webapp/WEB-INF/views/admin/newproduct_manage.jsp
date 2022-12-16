@@ -3,17 +3,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@include file="/WEB-INF/views/include/nav2.jsp" %>
-<meta charset="UTF-8">
+<meta charset="UTF-8">	
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>상품추가</title>
-<style>
-#wrap{}
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<style type="text/css">
+
+
+<style type="text/css">
+	#result_card img{
+		max-width: 100%;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}
+	#result_card {
+		position: relative;
+	}
+	.imgDeleteBtn{
+	    position: absolute;
+	    top: 0;
+	    right: 5%;
+	    background-color: #ef7d7d;
+	    color: wheat;
+	    font-weight: 900;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 50%;
+	    line-height: 26px;
+	    text-align: center;
+	    border: none;
+	    display: block;
+	    cursor: pointer;	
+	}
+	#wrap{}
 #header{background-dolor : #fff}
 
 </style>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<div id="wrap">
 		<header id ="header">
 			<div class="container">              
@@ -34,7 +71,11 @@
 <div class="admin_content_wrap">
 	<div class="admin_content_subject"><span>상품등록</span></div>
 	<div class="admin_content_main">
-		<form action="/admin/product_manage" method="post" id=enrollForm>
+		
+		<form action="/admin/product_manage" method="post" id=enrollForm enctype="multipart/form-data">
+		    <input type="hidden" name="uuid" id="uuid" />
+		    <input type="hidden" name="fileName" id="fileName" />
+		    <input type="hidden" name="uploadPath" id="uploadPath" />
 			<div class="form_section">
 				<div class="form_section_title">
 					<label>상품 이름</label>
@@ -64,7 +105,7 @@
                     	<option value="05">이벤트</option>
 						<!--   -->
 					</select>
-					<span id="ck_warn categoryName_warn">분류를 선택해주세요.</span>
+					<span id="ck_warn category_code_warn">분류를 선택해주세요.</span>
 				</div>
 			</div>
 			<div class="form_section">
@@ -90,7 +131,10 @@
 				<label>상품 설명</label>
 			</div>
 			<div class="form_section_content bit">
-				<textarea name="product_desc" id="productText_textarea"></textarea>
+				<textarea rows="5" cols="30" name="product_desc" id="productText_textarea">
+				
+				
+				</textarea>
 				<span class="ck_warn productText_warn">상품 설명을 입력해주세요</span>
 			</div>
 		</div>
@@ -100,7 +144,8 @@
 				<label>상품 이미지</label>
 			</div>
 			<div class="form_section_content">
-				<input type="file" id="fileItem" name='uploadFile' style="height: 30px;">
+			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
+			<!-- <input type="file" id="fileItem" multiple="multiple"  name="uploadFile"> -->	
 				<div id="uploadResult">
 				<!-- 
 					<div id="result_card">
@@ -113,15 +158,16 @@
 		</div>
 			<div class="btn_section">
 				<button id="cancelBtn" class="btn">취소</button>
-				<button id="enrollBtn" class="btn enroll_btn">등록</button>
+				<button type="submit" id="enrollBtn" class="btn enroll_btn">등록</button>
 			</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form>
-		
+		</form>	
+	
 	</div>
 	
 </div>
-       
+
+      
 <script>
 
  let enrollForm = $("#enrollForm")
@@ -129,7 +175,7 @@
   /*	취소버튼  */
 $("cancelBtn").click(function(){
 
-	lolocation.href="/admin/product_manage"
+	location.href="/admin/product_manage"
 
 });
 
@@ -142,7 +188,7 @@ $("enrolllBtn").on(function(e){
  /* 체크 변수 */
 
 	let productNameCk = false;
-	let categoryNameCk = false;
+	let categoryCodeCk = false;
 	let productPriceCk = false;
 	let productStockCk = false;
 	let productTextCk = false;
@@ -150,7 +196,7 @@ $("enrolllBtn").on(function(e){
 /* 입력값, 체크 대상 변수 */
 
 	let productName  = $("input[name='productName']").val();  //상품 이름
-	let categoryName = $("input[name='categoryName']").val(); // 분류 이름
+	let categoryCode = $("input[name='categoryCode']").val(); // 분류 이름
 	let productPrice = $("input[name='productPrice']").val(); // 상품 가격
 	let productStock = $("input[name='productStock']").val(); // 상품 재고
 	let productText  =  $(".bit p").html();					// 상품 설명
@@ -167,11 +213,11 @@ if(productName){
 }
 
 
-if(categoryName){
-	$(".categoryName_warn").css('display', 'none');
+if(categoryCode){
+	$(".categoryCode_warn").css('display', 'none');
 	categoryNameCk = true;
 }else{
-	$(".categoryName_warn").css('display', 'block');
+	$(".categoryCode_warn").css('display', 'block');
 	categoryNameCk = false;
 }
 
@@ -200,7 +246,7 @@ if(productText != '<br data-cke-filler="true">'){
 }
 
 /* 최종 확인*/
-if(productNameCk &&  categoryNameCk &&  productPriceCk &&  productPriceCk &&  productText){
+if(productNameCk &&  categoryCodeCk &&  productPriceCk &&  productPriceCk &&  productText){
 	//alert('통과');
 	enrollForm.submit();	
 }else{
@@ -208,34 +254,20 @@ if(productNameCk &&  categoryNameCk &&  productPriceCk &&  productPriceCk &&  pr
 }
 
 });
-
-
-	
-/*  분류 선택 버튼 
-$('.categoryName_btn').on("click",function(e){
-		
-		e.preventDefault();
-		
-		let popUrl = "/admin/productCategoryname";
-		let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-		
-		window.open(popUrl,"분류 찾기",popOption);	
-		
-	});
-*/
-
+</script>
+  
+<script>
 	/* 이미지 업로드 */
 	$("input[type='file']").on("change", function(e){
 		
-		 이미지 존재시 삭제 
-		if($(".imgDeleteBtn").length > 0){
-			deleteFile();
-		}
+			
 		
 		let formData = new FormData();
 		let fileInput = $('input[name="uploadFile"]');
 		let fileList = fileInput[0].files;
 		let fileObj = fileList[0];
+		
+	
 		
 		if(!fileCheck(fileObj.name, fileObj.size)){
 			return false;
@@ -243,111 +275,155 @@ $('.categoryName_btn').on("click",function(e){
 		
 		formData.append("uploadFile", fileObj);
 		
+		
+		
+		var csrfToken = $('meta[name="_csrf"]').attr('content');
+		var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+		
+		
+		console.log("csrf토큰"+csrfToken);
+		console.log("csrf헤더"+csrfHeader);
+		
+		
 		$.ajax({
-			url: '/admin/uploadAjaxAction',
+			url: '/uploadAjaxAction?${_csrf.parameterName}=${_csrf.token}',
 	    	processData : false,
 	    	contentType : false,
 	    	data : formData,
 	    	type : 'POST',
 	    	dataType : 'json',
-	    	success : function(result){
-	    		console.log(result);
-	    		showUploadImage(result);
+	    	enctype: 'multipart/form-data',	    	    	 
+	    	
+	    	beforeSend:(xhr)=>{
+	    	    xhr.setRequestHeader('${_csrf.headerName}','${_csrf.token}');
+	    	    $('#uuid').val('');
 	    	},
-	    	error : function(result){
-	    		alert("이미지 파일이 아닙니다.");
-	    	}
+    		success : function(result){
+    			console.log(result);
+    			showUploadImage(result);
+    			var uuid = result[0].uuid;
+    			$('#uuid').val(uuid);
+    			var fileName = result[0].fileName;
+    			$('#fileName').val(fileName);
+    			var uploadPath = result[0].uploadPath;
+    			$('#uploadPath').val(uploadPath);
+    		},
+    		error : function(result){
+    			alert(result.status + ":" + result.textStatus );
+    			alert("이미지 파일이 아닙니다.");
+    		}
 		});		
-
-		
 	});
-		
-	/* var, method related with attachFile */
-	let regex = new RegExp("(.*?)\.(jpg|png)$");
-	let maxSize = 1048576; //1MB	
-	
-	function fileCheck(fileName, fileSize){
 
-		if(fileSize >= maxSize){
-			alert("파일 사이즈 초과");
-			return false;
-		}
-			  
-		if(!regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드할 수 없습니다.");
-			return false;
-		}
-		
-		return true;		
-		
-	}	
-	
-	
-	/* 이미지 출력 */
-	function showUploadImage(uploadResultArr){
-		
-		/* 전달받은 데이터 검증 */
-		if(!uploadResultArr || uploadResultArr.length == 0){return}
-		
-		let uploadResult = $("#uploadResult");
-		
-		let obj = uploadResultArr[0];
-		
-		let str = "";
-		
-		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
-		//replace 적용 하지 않아도 가능
-		//let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-		
-		str += "<div id='result_card'>";
-		str += "<img src='/display?fileName=" + fileCallPath +"'>";
-		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
-		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
-		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
-		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";		
-		str += "</div>";		
-		
-   		uploadResult.append(str);     
-        
-	}	
-	
-	
-	/* 이미지 삭제 버튼 동작 */
-	$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
-		
-		deleteFile();
-		
-	});
-	
-	/* 파일 삭제 메서드 */
-	function deleteFile(){
-		
-		let targetFile = $(".imgDeleteBtn").data("file");
-		
-		let targetDiv = $("#result_card");
-		
-		$.ajax({
-			url: '/admin/deleteFile',
-			data : {fileName : targetFile},
-			dataType : 'text',
-			type : 'POST',
-			success : function(result){
-				console.log(result);
-				
-				targetDiv.remove();
-				$("input[type='file']").val("");
-				
-			},
-			error : function(result){
-				console.log(result);
-				
-				alert("파일을 삭제하지 못하였습니다.")
-			}
-		});
+
+/* var, method related with attachFile */
+let regex = new RegExp("(.*?)\.(jpg|png)$");
+let maxSize = 1048576; //1MB	
+
+function fileCheck(fileName, fileSize){
+
+	if(fileSize >= maxSize){
+		alert("파일 사이즈 초과");
+		return false;
+	}
+		  
+	if(!regex.test(fileName)){
+		alert("해당 종류의 파일은 업로드할 수 없습니다.");
+		return false;
 	}
 	
+	return true;		
 	
+}
 
+/* 이미지 출력 */
+function showUploadImage(uploadResultArr){
+	
+	/* 전달받은 데이터 검증 */
+	if(!uploadResultArr || uploadResultArr.length == 0){return}
+	
+	let uploadResult = $("#uploadResult");
+	
+	let obj = uploadResultArr[0];
+	
+	let str = "";
+	
+	let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+	
+	str += "<div id='result_card'>";
+	str += "<img src='/display?fileName=" + fileCallPath +"'>";
+	str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+	str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+	str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+	str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";	
+	str += "</div>";		
+	
+	uploadResult.append(str);  
+}
+</script>
+
+<script type="text/javascript">
+/* 파일 삭제 메서드 */
+function deleteFile(){
+	
+	let targetFile = $(".imgDeleteBtn").data("file");
+	
+	let targetDiv = $("#result_card");
+	
+	$.ajax({
+		url: '/admin/deleteFile',
+		data : {fileName : targetFile},
+		dataType : 'text',
+		type : 'POST',
+		success : function(result){
+			console.log(result);
+			
+			targetDiv.remove();
+			$("input[type='file']").val("");
+			
+		},
+		error : function(result){
+			console.log(result);
+			
+			alert("파일을 삭제하지 못하였습니다.")
+		}
+	});
+}
+
+/* 이미지 삭제 버튼 동작 */
+$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+	
+	deleteFile();
+	
+});
+
+
+/* 파일 삭제 메서드 */
+function deleteFile(){
+	
+	let targetFile = $(".imgDeleteBtn").data("file");
+	
+	let targetDiv = $("#result_card");
+	
+	$.ajax({
+		url: '/deleteFile',
+		data : {fileName : targetFile},
+		dataType : 'text',
+		type : 'POST',
+		success : function(result){
+			console.log(result);
+			
+			targetDiv.remove();
+			$("input[type='file']").val("");
+			
+		},
+		error : function(result){
+			console.log(result);
+			
+			alert("파일을 삭제하지 못하였습니다.")
+		}
+	});
+}
 </script>
 </body>
 </html>

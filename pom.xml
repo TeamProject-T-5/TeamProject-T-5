@@ -168,6 +168,21 @@
 	    <version>2.8.6</version>
 	</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util-ajax -->
+<dependency>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-util-ajax</artifactId>
+    <version>11.0.0</version>
+</dependency>
+
+<!-- thumbnail -->
+		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.13</version>
+		</dependency>
+	 
 
 	 
   </dependencies>

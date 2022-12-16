@@ -3,9 +3,12 @@ package com.mealkit.product;
 
 public class ProductCategory {
 	
-	 //  ex) "01" �븳�떇
-	private String category_code; // primary key  �긽�뭹遺꾨쪟�뿉 ���븳 肄붾뱶
-	private String category_name; // �긽�뭹遺꾨쪟�뿉 ���븳 �씠由�
+	 //  상품 분류
+	private String category_code;	
+	// primary key  상품 코드
+	
+	private String category_name; 
+	// 분류 이름
 	
 	public ProductCategory() {}
 	

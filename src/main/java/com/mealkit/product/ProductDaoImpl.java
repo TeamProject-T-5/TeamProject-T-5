@@ -29,145 +29,268 @@ public class ProductDaoImpl implements ProductDao {
 
 		sqlSession.insert("Product.ProductEnroll", product );	
 	}
+
+	// 이미지 등록
+		@Override
+		public void imageEnroll(AttachImageVO vo) {
+			
+			
+			sqlSession.insert("Product.imageEnroll", vo );
+			
+		}
+		
+		// 이미지 정보 반환
+		@Override
+		public List<AttachImageVO> getAttachList(
+				int product_number)
+				 {
+			
+			List<AttachImageVO>	list = sqlSession.selectList("Product.ProductList");
+			System.out.println("이미지 "+ list);
+			
+			return list;
+		}
+
+
+
+		
+		//  이미지 붙이기
+		@Override
+		public List<AttachImageVO> getAttachInfo(int product_number) {
+			 List<AttachImageVO> img = sqlSession.selectList("Product.img");
+				return img;
+			}
+
+		
+
+
+		// 상품 목록
+		@Override
+		public List<ProductVo> productGetList() {
+			
+			List<ProductVo> productList = sqlSession.selectList("Product.ProductList");	
+			
+			
+		
+			return  productList;
+		}
+		
+		
+
+		// 상품삭제
+		@Override
+		public int deleteproduct(int product_number) {
+			
+			System.out.println("삭제 ");
+			
+			
+			return sqlSession.delete("Product.deleteProduct", product_number);
+			
+		}
+		//상품 정보
+		
+		@Override
+		public List<ProductImgVo> getProductInfolist(int product_number){
+			
+			 List<ProductImgVo> getProductInfolist =  sqlSession.selectList("Product.koreaList");
+			
+			return getProductInfolist;
+		}
 	
-	//상품 목록
-	@Override
-	public List<ProductVo> productGetList() {
-		List<ProductVo> productList = sqlSession.selectList("Product.ProductList");	
-		System.out.println(productList);
-	
-		return  productList;
-	}
-
-	//상품 삭제
-	@Override
-	public void deleteproduct(int product_number) {
 		
-		System.out.println("삭제 시작 ");
-		sqlSession.delete("Product.deleteProduct", product_number);
 
-		System.out.println("삭제 종료 " );
-	}
 
-			//한식 페이지
-			@Override
-			public List<ProductVo> koreaList(Criteria cri) {
-				List<ProductVo> koreaList = sqlSession.selectList("Product.koreaList", cri);
-				return koreaList;
-			}
+		// 한식  리스트 정보
+		@Override
+		public List<ProductImgVo> getProductImgList(Criteria cri ) {
+			System.out.println("2");
+			List<ProductImgVo> productImgList = sqlSession.selectList("Product.koreaList",cri); 
+			return productImgList;
+		}
+
+		
+		// 한식 상세 페이지
+		@Override
+		public ProductVo koreaInfo(		int product_number) {
 			
-			//한식 페이징
-			@Override
-			public int listCount() {
-				
-				 return sqlSession.selectOne("Product.listCount"); 
-			}
-
-			//중식 페이지
-			@Override
-			public List<ProductVo> chinaList(Criteria cri) {
-				List<ProductVo> chinaList = sqlSession.selectList("Product.chinaList", cri);
-				return chinaList;
-			}
+			ProductVo korea = sqlSession.selectOne("Product.koreaInfo",  product_number);
 			
-			//중식 페이징
-			@Override
-			public int listChinaCount() {
-				
-				return sqlSession.selectOne("Product.listChinaCount"); 
-			}
-
-			//일식 페이지
-			@Override
-			public List<ProductVo> japList(Criteria cri) {
-				List<ProductVo> japList = sqlSession.selectList("Product.japList", cri);
-				return japList;
-			}
+			return korea;
+		}
+		
+		
+		//한식 페이지
+		@Override
+		public List<ProductVo> koreaList(Criteria cri) {
+			List<ProductVo> koreaList = sqlSession.selectList("Product.koreapaging", cri);
+			return koreaList;
+		}
+		
+		//한식 페이징
+		@Override
+		public int listCount() {
 			
-			//일식 페이징
-			@Override
-			public int listJapCount() {
-				
-				return sqlSession.selectOne("Product.listJapCount");
-			}
+			 return sqlSession.selectOne("Product.listCount"); 
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		// 중식 리스트 정보
+		@Override
+		public List<ProductImgVo> chinaImgList() {
+			List<ProductImgVo> chinaImgList = sqlSession.selectList("Product.chinaList");
+			return chinaImgList;
+		}
 
-			//양식 페이지
-			@Override
-			public List<ProductVo> euList(Criteria cri) {
-				List<ProductVo> euList = sqlSession.selectList("Product.euList", cri);
-				return euList;
-			}
+		// 중식 상세 페이지
+		@Override
+		public ProductVo chinaInfo(int product_number) {
 			
-			// 양식 페이징
-			@Override
-			public int listEuCount() {
-				
-				return sqlSession.selectOne("Product.listEuCount");
-			}
+			ProductVo productVo = sqlSession.selectOne("Product.chinaInfo", product_number);
+			
+			return productVo;
+		}
 
-			//이벤트 페이지
-			@Override
-			public List<ProductVo> eventList(Criteria cri) {
-				List<ProductVo> eventList = sqlSession.selectList("Product.eventList", cri);
-				return eventList;
-			}
 
-			// 이벤트 페이징
-			@Override
-			public int listEventCount() {
-				
-				return sqlSession.selectOne("Product.listEventCount");
-			}
+		//중식 페이지
+		@Override
+		public List<ProductVo> chinaList(Criteria cri) {
+			List<ProductVo> chinaList = sqlSession.selectList("Product.chinapaging", cri);
+			return chinaList;
+		}
 		
-		
-		
-		
-	// 한식 상세 페이지
-	@Override
-	public ProductVo koreaInfo(int product_number) {
-		
-		ProductVo productVo = sqlSession.selectOne("Product.koreaInfo", product_number);
-		
-		return productVo;
-	}
-
-	// 중식 상세 페이지
-	@Override
-	public ProductVo chinaInfo(int product_number) {
-		
-		ProductVo productVo = sqlSession.selectOne("Product.chinaInfo", product_number);
-		
-		return productVo;
-	}
-
-	// 일식 상세 페이지
-	@Override
-	public ProductVo japInfo(int product_number) {
-		
-		ProductVo productVo = sqlSession.selectOne("Product.japInfo", product_number);
-		
-		return productVo;
-	}
-
-	// 양식 상세 페이지
-	@Override
-	public ProductVo euInfo(int product_number) {
-		
-		ProductVo productVo = sqlSession.selectOne("Product.euInfo", product_number);
-		
-		return productVo;
-	}
-
-	// 이벤트식 상세 페이지
-	@Override
-	public ProductVo eventInfo(int product_number) {
-		
-		ProductVo productVo = sqlSession.selectOne("Product.eventInfo", product_number);
-		
-		return productVo;
-	}
+		//중식 페이징
+		@Override
+		public int listChinaCount() {
+			
+			return sqlSession.selectOne("Product.listChinaCount"); 
+		}
 
 	
+		
+		
+		
+		
+		
+		// 일식 리스트 정보
+		@Override
+		public List<ProductImgVo> japImgList() {
+			List<ProductImgVo> japImgList = sqlSession.selectList("Product.japList");
+			return japImgList;
+		}
+		
+		
+		// 일식 상세 페이지
+		@Override
+		public ProductVo japInfo(int product_number) {
+			
+			ProductVo productVo = sqlSession.selectOne("Product.japInfo", product_number);
+			
+			return productVo;
+		}
+		
+		
+		//일식 페이지
+		@Override
+		public List<ProductVo> japList(Criteria cri) {
+			List<ProductVo> japList = sqlSession.selectList("Product.jappaging", cri);
+					return japList;
+			}
+				
+		//일식 페이징
+		@Override
+		public int listJapCount() {
+					
+			return sqlSession.selectOne("Product.listJapCount");
+			}		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 양식 리스트 정보
+		@Override
+		public List<ProductImgVo> euImgList() {
+			List<ProductImgVo> euImgList = sqlSession.selectList("Product.euList");
+			return euImgList;
+		}
+		
+		// 양식 상세 페이지
+		@Override
+		public ProductVo euInfo(int product_number) {
+			
+			ProductVo productVo = sqlSession.selectOne("Product.euInfo", product_number);
+			
+			return productVo;
+		}
+		
+		
+		
+		
+
+		//양식 페이지
+		@Override
+		public List<ProductVo> euList(Criteria cri) {
+			List<ProductVo> euList = sqlSession.selectList("Product.eupaging", cri);
+			return euList;
+		}
+		
+		// 양식 페이징
+		@Override
+		public int listEuCount() {
+			
+			return sqlSession.selectOne("Product.listEuCount");
+		}
+
+	
+		
+		
+		
+		
+		
+		
+		// 이벤트식 리스트 정보
+		@Override
+		public List<ProductImgVo> eventImgList() {
+			List<ProductImgVo> eventImgList = sqlSession.selectList("Product.eventList");
+			return eventImgList;
+		}
+		
+		// 이벤트 상세 페이지
+		@Override
+		public ProductVo eventInfo(int product_number) {
+			
+			ProductVo productVo = sqlSession.selectOne("Product.eventInfo", product_number);
+			
+			return productVo;
+		}
+		
+		
+		//이벤트 페이지
+		@Override
+		public List<ProductVo> eventList(Criteria cri) {
+			List<ProductVo> eventList = sqlSession.selectList("Product.eventList", cri);
+			return eventList;
+		}
+
+		// 이벤트 페이징
+		@Override
+		public int listEventCount() {
+			
+			return sqlSession.selectOne("Product.listEventCount");
+		}
+		
+		
+		
+
 
 	
 
@@ -182,7 +305,14 @@ public class ProductDaoImpl implements ProductDao {
 
 
 
+			
+			
+			
+			
+			
+		
 
+		
 
 
 
