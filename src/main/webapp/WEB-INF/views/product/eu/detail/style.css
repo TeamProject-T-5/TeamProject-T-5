@@ -3,16 +3,37 @@
 	
 	  html{
 	  	 height: 100%;
+	  	 background-color: #F3EFE0;
 	  }
 	  
 	  body {
-	  	width: 1750px;
+
 	  	height: 1500px;
 	  	overflow-x:auto;
 	  	overflow-y:auto; 
   		white-space: nowrap;
 	  	
 	  }
+	  
+	  span{
+	  	position: relative;
+	  	top: 5px;
+	  	left: 250px;
+	  }
+	  
+	  .name{
+	  	position: relative;
+	  	top: 0px;
+	  	left: 0px;
+	  }
+	  
+	  .date{
+	 	position: relative;
+	  	top: 0px;
+	  	left: 0px;
+	  }
+	  
+	  
 	  
 	  .icon{
 	 		position: relative;
@@ -28,7 +49,9 @@
 	  
 	  .navbar ul{
 	    float: right;
-	    
+		position: relative;
+		left: 0px;
+		top: 0px;
 	  }
 	  
 	  .navbar li{
@@ -40,15 +63,15 @@
 	  .navbar a{
 	    text-decoration: none;
 	    color: black;
-	    font-style: bold;
-	    font-size: 13px;
+	    font-size: 30px;
 	  }
 	
 	  .logo{
 	    	position: relative;
-	    	top: -42px;
-	    	left: 72px;
+	    	top: -32px;
+	    	left: 80px;
 	    	text-decoration: none;
+	    	font-size: 30px;
 	  }
 	  
 	  .sidemenu {
@@ -139,22 +162,14 @@
 		    
 		}
 		
-		table{
-			display:block;
-			white-space:nowrap;
-		}
 		
-		th{
-			padding: 10px;
-		}
-		
-		td{
-			padding: 10px;
-		}
 		
 		input{
-   			width: 50%;
+   			width: 600px;
     		height: 3.3em;
+    		position: relative;
+    		top: 50px;
+    		left: 210px;
 		}
 		
 		#comment{
@@ -165,13 +180,22 @@
 		#submit{
 		    background-color: rgb(0, 128,255);
 		    width: 80px;
-		    height: 47px;
+		    height: 50px;
 		    font-size: 15px;
 		    font-weight: bold;
 		    color: aliceblue;
 		    border: none;
 		    cursor: pointer;
+		    position: relative;
+		    top: 52px;
+		    left: 204px;
 		    
+		}
+		
+		.text{
+			position: relative;
+			top: 0px;
+			left: 0px;
 		}
 		
 		.commentlist{

@@ -1,64 +1,144 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>물품 상세 페이지</title>
-<link rel="stylesheet" href="css/product/detail.css">
+<link rel="stylesheet" href="css/product/eu/eu_detail.css">
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
+
+<style>
+
+		.info{
+			
+			overflow: hidden;
+			
+		}
+		
+		.info img{
+			float: left;
+			position: relative;
+			left: 250px;
+			top: 50px;
+			
+		}
+		
+		.info ul{
+			overflow: hidden;
+			float: left;
+			display: block;
+			position: relative;
+    		left: 300px;
+		}
+
+		.info p{
+			line-height: 60px;
+		}
+		
+		.info p a{
+			text-decoration-line: none;
+			color:white;
+		}
+
+		.info select{
+			margin-left: 20px;
+		}
+
+		.info button{
+			cursor: pointer; 
+			width: 25%; 
+		    margin: 25px 20px;
+		    border: none;
+		    background-color: #1673ea;
+		    color: #fff; 
+		    font-size: 14px; 
+		    font-weight: bold;
+		    line-height: 50px;
+		    
+		}
+		
+		
+		
+		input{
+   			width: 600px;
+    		height: 3.3em;
+    		position: relative;
+    		top: 50px;
+    		left: 210px;
+		}
+		
+		#comment{
+			position: relative;
+			left: 300px;
+		}
+		
+		#submit{
+		    background-color: rgb(0, 128,255);
+		    width: 80px;
+		    height: 50px;
+		    font-size: 15px;
+		    font-weight: bold;
+		    color: aliceblue;
+		    border: none;
+		    cursor: pointer;
+		    position: relative;
+		    top: 52px;
+		    left: 204px;
+		    
+		}
+		
+		.text{
+			position: relative;
+			top: 0px;
+			left: 0px;
+		}
+		
+		.commentlist{
+			position: relative;
+			top: 60px;
+			left: 260px;
+		}
+		
+		</style>
 </head>
+
+
 <body>
-	<%@include file="/WEB-INF/views/include/nav.jsp" %>
+<%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<div class="info">
-		<img src="../images(kor)/돼지국밥.jpg">
+		<img src="/img/Korean_Food/Gopchang/곱창전골.jpg">
+		<form>
 		<ul>
-			<p>상품명	:	돼지국밥</p>
-			<p>가격		:	7,000원</p> 
-			<p>수량선택
-        			<select>
-			            <option>1</option>
-			            <option>2</option>
-			            <option>3</option>
-			            <option>4</option>
-			            <option>5</option>
-			            <option>6</option>
-			            <option>7</option>
-			            <option>8</option>
-			            <option>9</option>
-			            <option>10</option>
+			<p>상품명	: ${euInfo.product_name}	</p>
+			<p>가격	: ${euInfo.product_price}:	</p> 
+			<p>수량선택:
+		
+		
+        			<select name="product_stock">
+			            <option value="01">1</option>
+			            <option value="02">2</option>
+			            <option value="03">3</option>
+			            <option value="04">4</option>
+			            <option value="05">5</option>
+			            <option value="06">6</option>
+			            <option value="07">7</option>
+			            <option value="08">8</option>
+			            <option value="09">9</option>
+			            <option value="10">10</option>
 			        </select>
-			     <p><button><a href="../loginpage/login.html">장바구니 담기</a></button>
-			     <button>결제하기</button>
+			     <p><button><a href="../cart/cart.html">장바구니 담기</a></button>
+			     <button><a href="../purchase/purchase.html">결제하기</a></button>
 			</p>
-			<table>
-				<tr>
-					<th>구성품</th>
-					<td width="50px">1. 고기 + 인삼 120g&nbsp;
-					2. 육수 600g&nbsp;
-					3. 양념장 15g&nbsp;
-					4. 새우젓 15g</td>
-				</tr>
-				<tr>
-					<th>조리방법</th>
-					<td>1. 냉동된 제품을 포장상태로 냉장해동 또는 유수해동합니다.<br>
-					2-1. 해동된 제품을 개봉한 뒤 냄비에 부어 중불에 5분가량 끓여드세요.<br>
-					2-2. 해동된 제품을 개봉한 뒤 내용물을 전자레인지 용기에 넣고 3~4분간 충분히 데워드세요.</td>
-				</tr>
-				<tr>
-					<th>유통기한</th>
-					<td>제조일로부터 6개월 이내 섭취</td>
-				</tr>
-				<tr>
-					<th>중량</th>
-					<td>600g</td>
-				</tr>
-			</table>
+			<textarea style="width: 675px; height: 200px;" readonly>
+${euInfo.product_desc}
+</textarea>
 		</ul>
+		</form>	
 	</div>
 	<div id= "comment">
-		<div>댓글</div>
+		<span>댓글</span>
 		<input id= "input" placeholder="댓글을 입력해 주세요.">
 		<button id= "submit">등록</button>
 	</div>
@@ -70,7 +150,7 @@
 					<span class="date">2022.11.30 17:27</span>
 				</div>
 			</div>
-			<p>든든하네요</p>			
+			<p class="text">든든하네요</p>			
 		</ol>
 	</div>
 					

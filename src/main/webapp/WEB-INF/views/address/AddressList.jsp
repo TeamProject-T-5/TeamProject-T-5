@@ -18,7 +18,7 @@
 <body>
 
 
-	<form class="address" action="/AddressInsert" method="POST">
+	<form style="text-align:center" class="address" action="/AddressInsert" method="POST">
 		<h4>배송지 관리 목록</h4>
 	
 	

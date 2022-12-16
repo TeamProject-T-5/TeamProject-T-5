@@ -14,7 +14,7 @@
 </head>
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
 <body>
-	<form  action="/AddressModify" method="post">
+	<form style="text-align: center" action="/AddressModify" method="post">
 		<h4>배송지 수정 페이지</h4>
 		<input type="hidden" name="member_address_no" value="${addressOne.member_address_no}">
 		<div class="address_wrap">
@@ -41,11 +41,7 @@
 					</div>
 				</div>
 			</div><br>
-			<div class="address_button" onclick="sample6_execDaumPostcode()"> 
-						<div id ="updateAddress">
-							<br><span>배송지찾기</span>
-						</div>		
-					</div>
+			
 		</div>
 			<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 		/* 다음 주소 연동 */
@@ -113,6 +109,11 @@
            </script>
             <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>	
+	<div  style="text-align: center" class="address_button" onclick="sample6_execDaumPostcode()"> 
+						<div id ="updateAddress">
+							<br><button>배송지찾기</button>
+						</div>		
+					</div>
 
 </body>
 </html>
