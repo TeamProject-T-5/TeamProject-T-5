@@ -96,7 +96,7 @@ table.type01 td {
 					<th>작성날짜</th>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<sec:authentication property="principal.username" var="user_id" />
-		<c:if test="${user_id eq infoBoardDetail.member_id || user_id eq 'admin'}"><th>수정/삭제</th></c:if>
+					<c:if test="${user_id eq infoBoardDetail.member_id || user_id eq 'admin'}"><th>수정/삭제</th></c:if>
 					</sec:authorize>
 				</tr>			
 			<c:forEach  var="getCustomerReplyList" items="${ getCustomerReplyList }"> 
