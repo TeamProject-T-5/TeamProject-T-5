@@ -8,16 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>밀키트 쇼핑몰</title>
-<link rel="stylesheet" href="css/index/style.css">
+<link rel="stylesheet" href="/css/index/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
 </head>
 
 	<!-- 네비바 -->
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<!-- 네비바 끝 -->
-	<input type="text" class="search" placeholder="상품명을 입력하세요" >
-    <img class="ad" src="../광고.jpg">
-  
+	<form action="index/search" method="POST">
+	<input type="text" class="search"  name="product_name" placeholder="상품명을 입력하세요" >
+    <i><button class="enter">검색</button></i>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  </form>
+  <img class="ad" src="../광고.jpg">
     <h1>제일 많이 팔린 밀키트 TOP 3(미구현)</h1>
     <div class="mealkit">
       <ul>

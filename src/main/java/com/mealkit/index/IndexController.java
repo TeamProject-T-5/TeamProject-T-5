@@ -27,6 +27,11 @@ public class IndexController {
 	public String loginForm() {
 		return "login/loginform";
 	}
+	
+	@RequestMapping("/index/search")
+	public String search() {
+		return "index/search";
+	}
 
 	
 }

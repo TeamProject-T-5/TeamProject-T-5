@@ -6,6 +6,7 @@
 	  
 	  html{
 	  	 height: 100%;
+	  	 background-color: #F3EFE0;
 	  }
 	  
 	  body {
@@ -22,6 +23,8 @@
 	  
 	  .navbar ul{
 	    float: right;
+	    top: 30px;
+ 	  	position: relative;
 	  }
 	  
 	  .navbar li{
@@ -33,23 +36,21 @@
 	  .navbar a{
 	    text-decoration: none;
 	    color: black;
-	    font-style: bold;
-	    font-size: 13px;
+	    font-size: 20px;
 	  }
 	
 	  .logo{
 	    	position: relative;
-	    	top: -42px;
-	    	left: 72px;
+	    	top: -30px;
+	    	left: 110px;
 	    	text-decoration: none;
-	    	font-weight: bold;
-	    	font-size : 20px;
+	    	font-size: 30px;
 	  }
 	
 	 	.icon{
 	 		position: relative;
-	 		top: -73px;
-	 		left: 29px;
+	 		top: -71px;
+	 		left: 60px;
 	 	}
 	  
 		.sidemenu {
@@ -98,6 +99,8 @@
 	  	width: 700px;
 	  	display: block;
 	  	margin: auto;
+	  	position: relative;
+	  	bottom: 25px;
 	  	
 	  }
 	  
@@ -141,9 +144,19 @@
 	    float: left;
 	    font-size: 16px;
 	    
-	    
 	  }
 	
+	
+		button{
+	  	position: relative;
+	  	left: 1227px;
+	  	bottom: 70px;
+	  	background-color:#1673ea;
+	  	width: 50px;
+	  	height: 50px;
+	  	border: none;
+	  	cursor: pointer;
+	  }
 	  	  
 	  .clearfix{
 	    clear: both;
