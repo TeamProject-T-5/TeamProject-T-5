@@ -16,7 +16,7 @@ public class CustomerBoardDaoImpl implements CustomerBoardDao{
 	@Autowired
 	SqlSession sqlSession;
 	
-	
+	// 고객센터 게시판 등록
 	 @Override 
 	 public void customerBoardInsert(CustomerBoardVo customerBoardVo, 
 			 Principal principal) {
@@ -25,7 +25,7 @@ public class CustomerBoardDaoImpl implements CustomerBoardDao{
 		 sqlSession.insert("CustomerBoard.CustomerBoardInsert", customerBoardVo); 
 	 }
 	 
-
+	//고객센터 게시판 리스트
 	@Override
 	public List<CustomerBoardVo> getCustomerBoardList(Criteria cri) {
 		List<CustomerBoardVo> customerboardList  
@@ -39,6 +39,7 @@ public class CustomerBoardDaoImpl implements CustomerBoardDao{
 		return sqlSession.selectOne("CustomerBoard.listCount");
 	}
 	
+	 
 	 @Override
 	 public CustomerBoardVo customerBoardDetail(int cus_no) {
 		 CustomerBoardVo customerBoardDetail =
@@ -46,11 +47,13 @@ public class CustomerBoardDaoImpl implements CustomerBoardDao{
 		 return customerBoardDetail; 
 	 }
 	  
+	 // 수정
 	  @Override
 	  public void updateCustomerBoard(CustomerBoardVo customerBoardVo) {
 		  sqlSession.update("CustomerBoard.CustomerBoardUpdate", customerBoardVo); 
 	  }
 	  
+	  // 삭제
 	  @Override public void deleteCustomerBoard(int cus_no) {
 	  sqlSession.delete("CustomerBoard.DeleteCustomerBoard", cus_no);
 	  

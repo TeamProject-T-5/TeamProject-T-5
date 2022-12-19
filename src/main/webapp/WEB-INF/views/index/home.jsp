@@ -22,8 +22,8 @@
 	<!-- 네비바 -->
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<!-- 네비바 끝 -->
-	<form action="index/search" method="POST">
-	<input type="text" class="search"  name="product_name" placeholder="상품명을 입력하세요" >
+	<form action="/index/search" method="GET">
+	<input type="text" class="search"  name="keyword" placeholder="상품명을 입력하세요" >
     <i><button class="enter">검색</button></i>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   </form>

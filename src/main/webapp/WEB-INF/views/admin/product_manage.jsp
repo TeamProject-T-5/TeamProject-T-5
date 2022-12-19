@@ -41,6 +41,7 @@
          <td>상품분류</td>
          <td>상품가격</td>
          <td>상품재고</td>
+         <td>상품수정</td>
          <td>삭제하기</td>                
        </tr>     
         
@@ -52,11 +53,13 @@
 		 <td>${savedproductlist.product_price}</td>
 		 <td>${savedproductlist.product_stock}</td>  
 		 <td>
-		  <a href="/admin/Product/deleteProduct?product_number=${savedproductlist.product_number}">삭제</a>
-		  
+		 <a href="/admin/modifyproduct/${savedproductlist.product_number}">수정</a>
+		 </td>		 
+		 <td>
+		  <a href="/admin/Product/deleteProduct?product_number=${savedproductlist.product_number}">삭제</a>		  
 		 </td>       
         </tr>
-       
+        
        </c:forEach>
        
      </table>
@@ -67,11 +70,23 @@
  <div class="container" id="new_product">
     <div class="new_btn">
         <ul>
-            <li class="new_btn"><a href="/admin/newproduct_manage">상품추가</a></li>
+            <li class="new_btn"><a href="/admin/newproduct_manage">상품추가</a></li>           
         </ul>
     </div>
+  </div>
+   
 
  </div>
+<script >
+/* 수정 페이지 이동 */
+$("#modifyBtn").on("click", function(e){
+	e.preventDefault();
+	let addInput = '<input type="hidden" name="product_number" value="${goodsInfo.product_number}">';
+	$("#moveForm").append(addInput);
+	$("#moveForm").attr("action", "/admin/Modifyproduct");
+	$("#moveForm").submit();
+});	
 
+</script>
 </body>
 </html>

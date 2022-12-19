@@ -48,8 +48,10 @@ public class KoreaController {
 	// 한식 상세 페이지  
 	@RequestMapping("/product/korea/detail/korea_detail")
 	public String koreadetail(int product_number, Model model, Criteria cri) {
-			ProductVo koreaInfo = productService.koreaInfo(product_number);
-			System.out.println(koreaInfo);
+			
+		ProductVo koreaInfo = productService.koreaInfo(product_number);
+		
+		System.out.println(koreaInfo);
 			
 			model.addAttribute("koreaInfo", koreaInfo);
 			

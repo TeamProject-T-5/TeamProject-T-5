@@ -76,6 +76,8 @@
       )
     </insert>    
       
+      
+      
      <!--  상품 목록 당기기 -->      
       <select id = "ProductList"
       	resultType="com.mealkit.product.ProductVo">
@@ -90,6 +92,41 @@
 			PRODUCT
 		ORDER BY PRODUCT_NUMBER
       </select>
+     
+     
+      <!--  상품 수정 목록 당기기 -->      
+      <select id = "updateDetail"
+      	resultType="com.mealkit.product.ProductVo">
+      	SELECT 
+      	PRODUCT_NUMBER,
+		PRODUCT_NAME,
+		CATEGORY_CODE,
+		PRODUCT_PRICE,
+		PRODUCT_STOCK,
+		PRODUCT_DESC
+		FROM
+			PRODUCT
+		WHERE PRODUCT_NUMBER = #{ product_number}
+      </select>
+     
+     
+     
+       <!--  제품 정보 수정 -->
+      <update id="Modifyproduct">
+  	
+  		UPDATE
+  		 PRODUCT 
+  		 SET 
+  			PRODUCT.PRODUCT_NAME = #{ product_name, jdbcType=VARCHAR },
+  			PRODUCT.PRODUCT_PRICE = #{product_price}, 
+  			PRODUCT.PRODUCT_STOCK = #{product_stock},
+  			PRODUCT.PRODUCT_DESC = #{product_desc, jdbcType=VARCHAR }
+  		 
+  		where PRODUCT.PRODUCT_NUMBER = #{ product_number}
+  	
+  		</update>       
+     
+     
      
      <!-- 한식  리스트 정보 -->
       <select id="koreaList" resultType="com.mealkit.product.ProductImgVo">
@@ -365,17 +402,7 @@
   	</select>    	 	 	
        
       
-     <!--  제품 정보 수정 -->
-      <update id="productModify">
-  	
-  		UPDATE PRODUCT SET 
-  		PRODUCT_NAME = #{ product_number, jdbcType=VARCHAR },
-  		PRODUCT_PRICE = #{product_price}, 
-  		PRODUCT_STOCK = #{product_stock},
-  		PRODUCT_DESC = #{product_desc, jdbcType=VARCHAR },
-  		UPDATEDATE=SYSDATE where PRODUCT_NUMBER = #{ product_number, jdbcType=VARCHAR }
-  	
-  		</update>       
+   
       
   	
 <!--  목록 삭제 -->
