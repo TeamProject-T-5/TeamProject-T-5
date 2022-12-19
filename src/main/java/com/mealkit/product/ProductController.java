@@ -30,31 +30,27 @@ public class ProductController {
 	
 	
 	// 상품페이지
-	@RequestMapping("product/product_main")
+	@RequestMapping("/product/product_main")
 	public  String main() {
 		
-		return "product/product_ main";
+		return "product/product_main";
 	}
 	
 	
 	// 제품상세
-	@RequestMapping("product/detail/product_detail")
+	@RequestMapping("/product/detail/product_detail")
 	public  String detail() {
 		
 		return "product/detail/product_detail";
 	}
-
-	
-	
-
 		
-		// 상품관리페이지
-	@RequestMapping(value = "/admin/product_manage", method = RequestMethod.GET)
+	// 상품관리페이지
+	@RequestMapping(value = "/admin/product_manage")
 		public  String adminpro(ProductVo productVo, Model model) {
 			List<ProductVo> productList = productService.productGetList();
 			
-				model.addAttribute("list", productList);
-					return "admin/product_manage";
+			model.addAttribute("list", productList);
+			return "admin/product_manage";
 		
 	}	
 		
@@ -62,21 +58,21 @@ public class ProductController {
 		@RequestMapping("/admin/newproduct_manage")
 		public String newproducrt() {
 				
-			return "/admin/newproduct_manage";
-			}
+			return "admin/newproduct_manage";
+		}
 		
 		
 		// 상품 등록
-		@RequestMapping(value="admin/product_manage", method = RequestMethod.POST )
+		@RequestMapping("/admin/product_add" )
 		public String productEnrollPost(
 				ProductVo product,RedirectAttributes rttr)throws Exception{
-			
+				System.out.println(product);			
 				productService.ProductEnroll(product);
 			
 				rttr.addFlashAttribute("enroll_result", product.getProduct_number());
-			
-						return "redirect:/admin/product_manage";
-				}
+				return "redirect:/admin/product_manage";
+		}
+		
 		// 상품삭제
 		@RequestMapping("/admin/Product/deleteProduct")
 		public String deleteproduct(@RequestParam int product_number) {

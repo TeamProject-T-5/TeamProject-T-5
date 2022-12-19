@@ -20,7 +20,7 @@
     <i><button class="enter">검색</button></i>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   </form>
-  <img class="ad" src="../광고.jpg">
+  <a href="#"><img class="ad" src="img/ad.jpg"></a>
     <h1>제일 많이 팔린 밀키트 TOP 3(미구현)</h1>
     <div class="mealkit">
       <ul>

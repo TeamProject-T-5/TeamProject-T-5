@@ -72,7 +72,7 @@
 	<div class="admin_content_subject"><span>상품등록</span></div>
 	<div class="admin_content_main">
 		
-		<form action="/admin/product_manage" method="post" id=enrollForm enctype="multipart/form-data">
+		<form action="/admin/product_add?${_csrf.parameterName}=${_csrf.token}" method="post" id=enrollForm enctype="multipart/form-data">
 		    <input type="hidden" name="uuid" id="uuid" />
 		    <input type="hidden" name="fileName" id="fileName" />
 		    <input type="hidden" name="uploadPath" id="uploadPath" />

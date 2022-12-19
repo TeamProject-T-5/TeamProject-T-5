@@ -52,15 +52,15 @@
 		<div>
 		  <ul class= "korul"style="width: 700px; text-align: center;">
 		    <c:if test="${pageMaker.prev}">
-		    	<li class= "paging1"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+		    	<li class= "paging1"><a href="/product/product_eu_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 		    </c:if> 
 		
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-		    	<li class= "paging2"><a href="/product/product_korea_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+		    	<li class= "paging2"><a href="/product/product_eu_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
 		    </c:forEach>
 		
 		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		    	<li class= "paging3"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+		    	<li class= "paging3"><a href="/product/product_eu_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 		    </c:if> 
 		  </ul>
 		 </div> 
