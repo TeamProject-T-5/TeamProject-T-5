@@ -8,8 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>밀키트 쇼핑몰</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lightgallery.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lg-thumbnail.min.css"/>
 <link rel="stylesheet" href="/css/index/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+
+
 </head>
 
 	<!-- 네비바 -->
@@ -17,11 +26,25 @@
 	<!-- 네비바 끝 -->
 	<form action="index/search" method="POST">
 	<input type="text" class="search"  name="product_name" placeholder="상품명을 입력하세요" >
-    <i><button class="enter">검색</button></i>
+    <button class="enter"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   </form>
-  <a href="#"><img class="ad" src="img/ad.jpg"></a>
+ 
+ 
+  <div class="slider">
+  		<div><a><img class="ad" src="img/ad.jpg"></a></div>
+  		<div><a><img class="ad" src="img/kit.jpg"></a></div>
+  </div>
+  
+		<i class="fa-solid fa-chevron-left"></i>
+  		<i class="fa-solid fa-chevron-right"></i>
+ 
+
+  
+
     <h1>제일 많이 팔린 밀키트 TOP 3(미구현)</h1>
+ 
+ 
     <div class="mealkit">
       <ul>
         <a href="#"><img src=""></a>
@@ -61,5 +84,26 @@
 	   </ul>
       <div class="clearfix"></div>
     </div>
+    
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+  $('.slider').slick({
+	 
+				// 옆으로 이동하는 화살표 표시 여부
+		dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+		autoplay : true
+  });
+});
+		
+</script>
+
 </body>
+
+
 </html>
