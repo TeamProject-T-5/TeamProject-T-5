@@ -29,10 +29,12 @@
 	  <c:forEach var="productImg"  items="${ productImgList }">        
 									
 			 <div class= "image_wrap"
+			  	
         		data-filename="${productImg.fileName}"
 				data-productnumber="${productImg.product_number}"
 			    data-path="${productImg.uploadPath}" 
-			    data-uuid="${productImg.uuid}" 
+			    data-uuid="${productImg.uuid}"
+			    
 			    >	
 			   <img>
 			   <a href="/product/korea/detail/korea_detail?product_number=${productImg.product_number}">${productImg.product_name}</a>
@@ -48,7 +50,7 @@
      
     <div class="koreanfood">
 		<div>
-		  <ul style="width: 700px; text-align: center;">
+		  <ul class= "korul"style="width: 700px; text-align: center;">
 		    <c:if test="${pageMaker.prev}">
 		    	<li class= "paging1"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 		    </c:if> 

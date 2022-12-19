@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mealkit.foodpaging.Criteria;
 import com.mealkit.foodpaging.PageMaker;
+import com.mealkit.product.ProductImgVo;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -28,6 +29,8 @@ public class EuController {
 	public  String eu(ProductVo productVo, Model model, Criteria cri) {
 		
 		List<ProductVo> euList = productService.euList(cri);
+		List<ProductImgVo> euImgList = productService.euImgList(cri);
+		model.addAttribute("euImgList", euImgList);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -45,6 +48,8 @@ public class EuController {
 				ProductVo euInfo = productService.euInfo(product_number);
 				System.out.println(euInfo);
 				model.addAttribute("euInfo", euInfo);
+				
+				model.addAttribute("euInfo",productService.euInfo(product_number));
 		return "product/eu/detail/eu_detail";
 	}
 			

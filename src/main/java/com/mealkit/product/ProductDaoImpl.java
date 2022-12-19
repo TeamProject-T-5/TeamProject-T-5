@@ -142,8 +142,8 @@ public class ProductDaoImpl implements ProductDao {
 		
 		// 중식 리스트 정보
 		@Override
-		public List<ProductImgVo> chinaImgList() {
-			List<ProductImgVo> chinaImgList = sqlSession.selectList("Product.chinaList");
+		public List<ProductImgVo> chinaImgList(Criteria cri) {
+			List<ProductImgVo> chinaImgList = sqlSession.selectList("Product.chinaList", cri);
 			return chinaImgList;
 		}
 
@@ -179,8 +179,8 @@ public class ProductDaoImpl implements ProductDao {
 		
 		// 일식 리스트 정보
 		@Override
-		public List<ProductImgVo> japImgList() {
-			List<ProductImgVo> japImgList = sqlSession.selectList("Product.japList");
+		public List<ProductImgVo> japImgList(Criteria cri) {
+			List<ProductImgVo> japImgList = sqlSession.selectList("Product.japList", cri);
 			return japImgList;
 		}
 		
@@ -218,8 +218,8 @@ public class ProductDaoImpl implements ProductDao {
 		
 		// 양식 리스트 정보
 		@Override
-		public List<ProductImgVo> euImgList() {
-			List<ProductImgVo> euImgList = sqlSession.selectList("Product.euList");
+		public List<ProductImgVo> euImgList(Criteria cri) {
+			List<ProductImgVo> euImgList = sqlSession.selectList("Product.euList",cri);
 			return euImgList;
 		}
 		
@@ -259,8 +259,8 @@ public class ProductDaoImpl implements ProductDao {
 		
 		// 이벤트식 리스트 정보
 		@Override
-		public List<ProductImgVo> eventImgList() {
-			List<ProductImgVo> eventImgList = sqlSession.selectList("Product.eventList");
+		public List<ProductImgVo> eventImgList(Criteria cri) {
+			List<ProductImgVo> eventImgList = sqlSession.selectList("Product.eventList",cri);
 			return eventImgList;
 		}
 		

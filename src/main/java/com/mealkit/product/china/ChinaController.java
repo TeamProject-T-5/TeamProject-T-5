@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mealkit.foodpaging.Criteria;
 import com.mealkit.foodpaging.PageMaker;
+import com.mealkit.product.ProductImgVo;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -28,12 +29,16 @@ public class ChinaController {
 	public  String china(ProductVo productVo, Model model, Criteria cri) {
 		
 		List<ProductVo> chinaList = productService.chinaList(cri);
+		List<ProductImgVo> chinaImgList = productService.chinaImgList(cri);
+		
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(productService.listChinaCount());
 		System.out.println(pageMaker.getTotalCount());
 		
+		 				
+		model.addAttribute("chinaImgList", chinaImgList);					
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("chinaList", chinaList);
 		return "product/china/product_china_list";

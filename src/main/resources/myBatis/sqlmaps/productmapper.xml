@@ -129,81 +129,111 @@
         <!-- 중식 리스트 -->
         <select id="chinaList" resultType="com.mealkit.product.ProductImgVo">
       
-      	   	SELECT
-      		 product.PRODUCT_NUMBER
-		    ,product.PRODUCT_NAME		    
-		    ,product.PRODUCT_PRICE
-		    ,product.CATEGORY_CODE		
-		    ,product_img.FILENAME
-		    ,product_img.UPLOADPATH
-		    ,product_img.UUID
-		    FROM 
-        PRODUCT 
-        FULL OUTER JOIN product_img
-        ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER
-       
-  		WHERE product.CATEGORY_CODE = '02'
-      
+      	     	  SELECT 
+         PRODUCT_NUMBER
+          ,PRODUCT_NAME          
+          ,PRODUCT_PRICE      
+          ,FILENAME
+          ,UPLOADPATH
+          ,UUID
+    FROM  ( 
+    SELECT 
+           product.PRODUCT_NUMBER
+          ,product.PRODUCT_NAME          
+          ,product.PRODUCT_PRICE      
+          ,product_img.FILENAME
+          ,product_img.UPLOADPATH
+          ,product_img.UUID
+          ,ROW_NUMBER() OVER(ORDER BY product.PRODUCT_NUMBER DESC) AS RNUM
+           FROM PRODUCT 
+           FULL OUTER JOIN product_img
+           ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER 
+        where category_code = 02) FR
+      WHERE RNUM BETWEEN  #{ rowStart } AND #{ rowEnd } 
+      ORDER BY PRODUCT_NUMBER DESC
       </select>
       
         <!-- 일식 리스트 -->
       <select id="japList" resultType="com.mealkit.product.ProductVo">
       	
-      	   	SELECT
-      		 product.PRODUCT_NUMBER
-		    ,product.PRODUCT_NAME		    
-		    ,product.PRODUCT_PRICE		
-		    ,product_img.FILENAME
-		    ,product_img.UPLOADPATH
-		    ,product_img.UUID
-		    FROM 
-        PRODUCT 
-        FULL OUTER JOIN product_img
-        ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER
-       
-  		WHERE product.CATEGORY_CODE = '03'
-      
+      	    	  SELECT 
+         PRODUCT_NUMBER
+          ,PRODUCT_NAME          
+          ,PRODUCT_PRICE      
+          ,FILENAME
+          ,UPLOADPATH
+          ,UUID
+    FROM  ( 
+    SELECT 
+           product.PRODUCT_NUMBER
+          ,product.PRODUCT_NAME          
+          ,product.PRODUCT_PRICE      
+          ,product_img.FILENAME
+          ,product_img.UPLOADPATH
+          ,product_img.UUID
+          ,ROW_NUMBER() OVER(ORDER BY product.PRODUCT_NUMBER DESC) AS RNUM
+           FROM PRODUCT 
+           FULL OUTER JOIN product_img
+           ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER 
+        where category_code = 03) FR
+      WHERE RNUM BETWEEN  #{ rowStart } AND #{ rowEnd } 
+      ORDER BY PRODUCT_NUMBER DESC
       
       
       </select>
       
         <!-- 양식 리스트 -->
       <select id="euList" resultType="com.mealkit.product.ProductVo">
-      
-      	   	SELECT
-      		 product.PRODUCT_NUMBER
-		    ,product.PRODUCT_NAME		    
-		    ,product.PRODUCT_PRICE		
-		    ,product_img.FILENAME
-		    ,product_img.UPLOADPATH
-		    ,product_img.UUID
-		    FROM 
-        PRODUCT 
-        FULL OUTER JOIN product_img
-        ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER
-       
-  		WHERE product.CATEGORY_CODE = '04'
-      
+          	  SELECT 
+         PRODUCT_NUMBER
+          ,PRODUCT_NAME          
+          ,PRODUCT_PRICE      
+          ,FILENAME
+          ,UPLOADPATH
+          ,UUID
+    FROM  ( 
+    SELECT 
+           product.PRODUCT_NUMBER
+          ,product.PRODUCT_NAME          
+          ,product.PRODUCT_PRICE      
+          ,product_img.FILENAME
+          ,product_img.UPLOADPATH
+          ,product_img.UUID
+          ,ROW_NUMBER() OVER(ORDER BY product.PRODUCT_NUMBER DESC) AS RNUM
+           FROM PRODUCT 
+           FULL OUTER JOIN product_img
+           ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER 
+        where category_code = 04) FR
+      WHERE RNUM BETWEEN  #{ rowStart } AND #{ rowEnd } 
+      ORDER BY PRODUCT_NUMBER DESC
       
       </select>
       
         <!-- 이벤트 리스트 -->
       <select id="eventList" resultType="com.mealkit.product.ProductVo">
       	
-      	   	SELECT
-      		 product.PRODUCT_NUMBER
-		    ,product.PRODUCT_NAME		    
-		    ,product.PRODUCT_PRICE		
-		    ,product_img.FILENAME
-		    ,product_img.UPLOADPATH
-		    ,product_img.UUID
-		    FROM 
-        PRODUCT 
-        FULL OUTER JOIN product_img
-        ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER
-       
-  		WHERE product.CATEGORY_CODE = '05'
-      
+      	       	  SELECT 
+         PRODUCT_NUMBER
+          ,PRODUCT_NAME          
+          ,PRODUCT_PRICE      
+          ,FILENAME
+          ,UPLOADPATH
+          ,UUID
+    FROM  ( 
+    SELECT 
+           product.PRODUCT_NUMBER
+          ,product.PRODUCT_NAME          
+          ,product.PRODUCT_PRICE      
+          ,product_img.FILENAME
+          ,product_img.UPLOADPATH
+          ,product_img.UUID
+          ,ROW_NUMBER() OVER(ORDER BY product.PRODUCT_NUMBER DESC) AS RNUM
+           FROM PRODUCT 
+           FULL OUTER JOIN product_img
+           ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER 
+        where category_code = 05) FR
+      WHERE RNUM BETWEEN  #{ rowStart } AND #{ rowEnd } 
+      ORDER BY PRODUCT_NUMBER DESC
       
       </select>
       
@@ -352,6 +382,8 @@
   <delete  id="deleteProduct"> 
       
     DELETE FROM PRODUCT WHERE product_number = #{ product_number}
+       
+       
        
   </delete>
 

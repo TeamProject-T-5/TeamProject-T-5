@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mealkit.foodpaging.Criteria;
 import com.mealkit.foodpaging.PageMaker;
+import com.mealkit.product.ProductImgVo;
 import com.mealkit.product.ProductService;
 import com.mealkit.product.ProductVo;
 
@@ -28,6 +29,11 @@ public class EventController {
 	public  String event(ProductVo productVo, Model model, Criteria cri) {
 		
 		List<ProductVo> eventList = productService.eventList(cri);
+		List<ProductImgVo> eventImgList = productService.eventImgList(cri);
+		model.addAttribute("eventImgList", eventImgList);
+		
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(productService.listEventCount());
@@ -44,6 +50,7 @@ public class EventController {
 				ProductVo eventInfo = productService.eventInfo(product_number);
 				System.out.println(eventInfo);
 				model.addAttribute("eventInfo", eventInfo);
+				model.addAttribute("eventInfo",productService.eventInfo(product_number));
 		return "product/event/detail/event_detail";
 	}
 			

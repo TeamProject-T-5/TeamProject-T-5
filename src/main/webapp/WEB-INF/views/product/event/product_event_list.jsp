@@ -8,51 +8,59 @@
 <meta charset="UTF-8">
 <title>이벤트</title>
 <link rel="stylesheet" href="/css/food/style.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
 <style type="text/css">
-		li {
-		list-style: none;
-		padding: 6px;
-		float: left;
+	li {
+	list-style: none;
+	padding: 6px;
+	float: left;
 	}
 </style>
+
 </head>
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
+
+   <div class= "kor1">
+	  <c:forEach var="eventImgList"  items="${ eventImgList }">        
+									
+			 <div class= "image_wrap"
+			  	
+        		data-filename="${eventImgList.fileName}"
+				data-productnumber="${eventImgList.product_number}"
+			    data-path="${eventImgList.uploadPath}" 
+			    data-uuid="${eventImgList.uuid}"
+			    
+			    >	
+			   <img>
+			   <a href="/product/event/detail/event_detail?product_number=${eventImgList.product_number}">${eventImgList.product_name}</a>
+		       <div class = "price">
+		       ${eventImgList.product_price}
+		       </div> 
+		     </div>
+       
+       </c:forEach>
+  </div>
+  
+    
+     
     <div class="koreanfood">
-    <c:forEach var="eventList"  items="${ eventList }">
-    	<div>
-	    	<ul class="food1">
-	        <li>
-	        <a href="/product/event/detail/event_detail?product_number=${eventList.product_number}">
-	        <img src="/img/Korean_Food/Gopchang/곱창전골.jpg">
-	        </a>
-	        <div><a href="/product/event/detail/event_detail?product_number=${eventList.product_number}">${eventList.product_name}</a></div>
-	        <div>${eventList.product_price}</div>
-	       
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-			     <i class="fa-solid fa-star" style="color:green"></i>
-	        </li>
-	        </ul>
-        </div>
-        </c:forEach>
-        
-   		<!-- 페이징  -->
 		<div>
-		  <ul style="width: 700px; text-align: center;">
+		  <ul class= "korul"style="width: 700px; text-align: center;">
 		    <c:if test="${pageMaker.prev}">
-		    	<li><a href="/product/product_event_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+		    	<li class= "paging1"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 		    </c:if> 
 		
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-		    	<li><a href="/product/product_event_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+		    	<li class= "paging2"><a href="/product/product_korea_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
 		    </c:forEach>
 		
 		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		    	<li><a href="/product/product_event_list{pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+		    	<li class= "paging3"><a href="/product/product_korea_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 		    </c:if> 
 		  </ul>
 		 </div> 
@@ -62,5 +70,40 @@
 	function chk_form() {
 		document.getElementById('frm2').submit();
 	}
+	
 </script>
+
+<script>
+
+$(document).ready(function(){
+	
+	
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		
+		if(bobj.data("productnumber")){
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			
+		} else {
+			
+			$(this).find("img").attr('src', '/resources/image/nothing.png');
+			
+		}
+
+		
+	});		
+	
+});	
+
+
+
+</script>	
 </html>

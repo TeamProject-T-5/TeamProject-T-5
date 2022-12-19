@@ -33,36 +33,36 @@ public interface ProductDao {
 		public  List<ProductImgVo> getProductInfolist(int product_number);
 		
 			 	 
-	//  지정 상품 이미지 정보 얻기
+		//  지정 상품 이미지 정보 얻기
 		
 		public List<AttachImageVO> getAttachInfo(int product_number);
 
 		//  상품 리스트 페이지 정보
 		
 		// 한식 리스트
-		public List<ProductImgVo> getProductImgList(Criteria cri );
+		public List<ProductImgVo> getProductImgList(Criteria cri);
 	 
 
-		 //한식페이지
-		 public List<ProductVo> koreaList(Criteria cri);
+		//한식페이지
+		public List<ProductVo> koreaList(Criteria cri);
 		 
-		 //한식 페이징
-		 public int listCount();
+		//한식 페이징
+		public int listCount();
 
 		
 		
 		
 		
 		// 중식 리스트
-		public List<ProductImgVo> chinaImgList();
+		public List<ProductImgVo> chinaImgList(Criteria cri);
 		
 		
 		 
-		 //중식 페이지
-	 	 public List<ProductVo> chinaList(Criteria cri);
+		//중식 페이지
+	 	public List<ProductVo> chinaList(Criteria cri);
 	 	 
-	 	 //중식 페이징
-	 	 public int listChinaCount();
+	 	//중식 페이징
+	 	public int listChinaCount();
 
 		
 		
@@ -70,14 +70,14 @@ public interface ProductDao {
 		
 		
 		// 일식 리스트
-		public List<ProductImgVo> japImgList();
+		public List<ProductImgVo> japImgList(Criteria cri);
 		
 		
-	 	 //일식페이지
-	 	 public List<ProductVo> japList(Criteria cri);
+	 	//일식페이지
+	 	public List<ProductVo> japList(Criteria cri);
 	 	 
-	 	 //일식 페이징
-	 	 public int listJapCount();
+	 	//일식 페이징
+	 	public int listJapCount();
 		
 		
 		
@@ -85,14 +85,14 @@ public interface ProductDao {
 		
 
 		// 양식 리스트
-		public List<ProductImgVo> euImgList();
+		public List<ProductImgVo> euImgList(Criteria cri);
 		
 		
-		 //양식페이지
-		 public List<ProductVo> euList(Criteria cri); 
+		//양식페이지
+		public List<ProductVo> euList(Criteria cri); 
 		 
-		 //양식 페이징
-		 public int listEuCount();
+		//양식 페이징
+		public int listEuCount();
 		 
 		
 		
@@ -100,10 +100,10 @@ public interface ProductDao {
 		
 
 		// 이벤트 리스트
-		public List<ProductImgVo> eventImgList();
+		public List<ProductImgVo> eventImgList(Criteria cri);
  
-		 //이벤트
-		 public List<ProductVo> eventList(Criteria cri);
+		//이벤트
+		public List<ProductVo> eventList(Criteria cri);
 		 
 		 //이벤트 페이징
 		 public int listEventCount();

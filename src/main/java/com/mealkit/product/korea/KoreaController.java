@@ -53,6 +53,7 @@ public class KoreaController {
 			System.out.println(koreaInfo);
 			
 			model.addAttribute("koreaInfo", koreaInfo);
+			
 			model.addAttribute("koreaInfo",productService.koreaInfo(product_number));
 			
 		return "product/korea/detail/korea_detail";

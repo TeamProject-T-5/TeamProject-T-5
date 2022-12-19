@@ -138,11 +138,22 @@ public class ProductServiveImpl implements ProductService {
 	
 	// 중식 리스트
 	@Override
-	public List<ProductImgVo> chinaImgList() {
-		List<ProductImgVo> chinaImgList = productDao.chinaImgList( );
+	public List<ProductImgVo> chinaImgList(Criteria cri) {
+		List<ProductImgVo> chinaImgList = productDao.chinaImgList(cri);
 				return chinaImgList;
 			}
-				
+	
+	
+	
+	
+	
+	// 일식 리스트
+	@Override
+	public List<ProductImgVo> japImgList(Criteria cri) {
+			List<ProductImgVo> japImgList = productDao.japImgList(cri);
+				return japImgList;
+				}
+		
 	
 	// 일식상세 정보
 	@Override
@@ -151,12 +162,6 @@ public class ProductServiveImpl implements ProductService {
 		return japInfo;
 	}
 	
-	// 일식 리스트
-	@Override
-	public List<ProductImgVo> japImgList() {
-		List<ProductImgVo> japImgList = productDao.japImgList( );
-			return japImgList;
-			}
 	
 
 	// 양식상세 정보
@@ -168,8 +173,8 @@ public class ProductServiveImpl implements ProductService {
 	
 	// 양식 리스트
 	@Override
-	public List<ProductImgVo> euImgList() {
-		List<ProductImgVo> euImgList = productDao.euImgList( );
+	public List<ProductImgVo> euImgList(Criteria cri) {
+		List<ProductImgVo> euImgList = productDao.euImgList(cri);
 		return euImgList;
 	}
 
@@ -192,8 +197,8 @@ public class ProductServiveImpl implements ProductService {
 	
 	// 이벤트 리스트
 	@Override
-	public List<ProductImgVo> eventImgList() {
-		List<ProductImgVo> eventImgList = productDao.eventImgList( );
+	public List<ProductImgVo> eventImgList(Criteria cri) {
+		List<ProductImgVo> eventImgList = productDao.eventImgList(cri);
 		return eventImgList;
 	}	
 	

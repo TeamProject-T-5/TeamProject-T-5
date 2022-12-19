@@ -89,7 +89,7 @@
 	    padding: 0;
 	    width: 1000px;
 	    text-align: center;
-	    
+	    position: relative;
 	    
 	  }
 
@@ -100,13 +100,16 @@
 	  }
 	  
 	  
-	 .koreanfood ul{
-	    text-decoration: none;
+	 .koreanfood ul {
+     	text-decoration: none;
 	    color: black;
 	    float: left;
-	    position: relative;
-	 	top: 100px;
-	  }
+	    position: absolute;
+	    top: 180px;
+	    left: 25px;
+	    font-size: 20px;
+
+}
 	  
 	  .pagemove{
 	  	position: relative;
@@ -149,4 +152,4 @@
 	  	display: inline-block;
 	  }
 	  
-	  
+	 
