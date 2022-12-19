@@ -62,7 +62,29 @@ public class ProductDaoImpl implements ProductDao {
 			}
 
 		
+		
+		// 상품 수정
+		@Override
+		public void Modifyproduct(ProductVo productVo) {
+			System.out.println(productVo);
+			sqlSession.update("Product.Modifyproduct", productVo); 
+			
+		}
 
+		
+		//상품 수정 정보
+		@Override
+		public ProductVo updateDetail(int product_number) {
+			
+			return sqlSession.selectOne("Product.updateDetail", product_number);
+		}
+
+	
+			
+			
+			
+		
+			
 
 		// 상품 목록
 		@Override
@@ -301,15 +323,13 @@ public class ProductDaoImpl implements ProductDao {
 		}
 
 
+		@Override
+		public List<ProductImgVo> mainImgList() {
+			
+			return sqlSession.selectList("Product.mainImgList");
+		}
 
 
-
-
-			
-			
-			
-			
-			
 		
 
 		

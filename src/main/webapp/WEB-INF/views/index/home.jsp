@@ -19,21 +19,40 @@
 <link rel="stylesheet" href="/css/index/style.css">
 
 
-</head>
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+<style>
+	ul,li{
+		list-style: none;
+		
+	}
+	
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+</style>
+
+</head>
 	<!-- 네비바 -->
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<!-- 네비바 끝 -->
-	<form action="index/search" method="POST">
-	<input type="text" class="search"  name="product_name" placeholder="상품명을 입력하세요" >
-    <button class="enter"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+
+<form action="/index/search" method="GET">
+	<input type="text" class="search"  name="keyword" placeholder="상품명을 입력하세요" >
+    <i><button class="enter">검색</button></i>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   </form>
+	
  
  
   <div class="slider">
   		<div><a><img class="ad" src="img/ad.jpg"></a></div>
   		<div><a><img class="ad" src="img/kit.jpg"></a></div>
+  		<div><a><img class="ad" src="img/kit2.jpg"></a></div>
   </div>
   
 		<i class="fa-solid fa-chevron-left"></i>
@@ -42,48 +61,7 @@
 
   
 
-    <h1>제일 많이 팔린 밀키트 TOP 3(미구현)</h1>
- 
- 
-    <div class="mealkit">
-      <ul>
-        <a href="#"><img src=""></a>
-        <p>TOP 1. 돼지국밥</p>
-        <p class="price">7,000</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-	     </div>
-	  </ul>
-      <ul>
-        <a href="#"><img src="img/Chinese_Food/Chili shrimp/칠리새우.jpg"></a>
-        <p>TOP 2. 칠리새우 </p>
-        <p class="price">8,500</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-	     </div>
-	  </ul>
-      <ul>
-        <a href="#"><img src="../images(jpn)/규카츠.jpg"></a>
-        <p>TOP 3. 규카츠</p>
-        <p class="price">9,000</p>
-        <div>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-		     <i class="fa-solid fa-star" style="color:green"></i>
-	     </div>
-	   </ul>
-      <div class="clearfix"></div>
-    </div>
+   
     
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -105,5 +83,54 @@ $(document).ready(function(){
 
 </body>
 
+
+
+ 
+    <h1>저렴한 가성비 밀키트 TOP 3</h1>
+    	<div class="mealkit">
+        <c:forEach var="mainImgList"  items="${ mainImgList }" begin="0" end="2">						
+			<ul>
+			   <li>
+				   <div class= "image_wrap"
+	        		data-filename="${mainImgList.fileName}"
+					data-productnumber="${mainImgList.product_number}"
+				  	data-path="${mainImgList.uploadPath}"
+				  	data-uuid="${mainImgList.uuid}">	
+				   <a href="/product/eu/detail/eu_detail?product_number=${mainImgList.product_number}"><img></a>
+				   <div><a href="/product/eu/detail/eu_detail?product_number=${mainImgList.product_number}">${mainImgList.product_name}</a></div>
+			       <div class = "price">${mainImgList.product_price}</div> 
+			       </div>
+		       </li>
+			</ul>
+        </c:forEach>
+		</div>
+</body>
+<script>
+$(document).ready(function(){
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		
+		if(bobj.data("productnumber")){
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			
+		} else {
+			
+			$(this).find("img").attr('src', '/resources/image/nothing.png');
+			
+		}
+
+		
+	});		
+	
+});	
+</script>	
 
 </html>

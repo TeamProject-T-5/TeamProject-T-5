@@ -14,6 +14,13 @@ public interface ProductDao {
 	
 	 //상품 목록
 	 public List<ProductVo> productGetList();
+	 
+	 //상품 수정
+	 public void Modifyproduct(ProductVo productVo);
+	 
+	 // 상품수정 정보
+	 public ProductVo updateDetail(int product_number);
+		
 
 	 //상품 삭제	
 	 public int deleteproduct(int product_number);
@@ -130,6 +137,8 @@ public interface ProductDao {
 
 	// 이벤트 상세 페이지
 	public ProductVo eventInfo(int product_number);
+
+	public List<ProductImgVo> mainImgList();
 
 	
 

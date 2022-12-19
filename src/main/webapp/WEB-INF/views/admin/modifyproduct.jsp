@@ -6,7 +6,7 @@
 <meta charset="UTF-8">	
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
-<title>상품추가</title>
+<title>상품수정</title>
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -69,10 +69,11 @@
 	
 
 <div class="admin_content_wrap">
-	<div class="admin_content_subject"><span>상품등록</span></div>
+	<div class="admin_content_subject"><span>상품수정</span></div>
 	<div class="admin_content_main">
 		
-		<form action="/admin/product_add?${_csrf.parameterName}=${_csrf.token}" method="post" id=enrollForm enctype="multipart/form-data">
+		<form action="/admin/product_modify?${_csrf.parameterName}=${_csrf.token}" method="post"  enctype="multipart/form-data">
+		    <input type="hidden" name="product_number" value="${updateDetail.product_number}" />
 		    <input type="hidden" name="uuid" id="uuid" />
 		    <input type="hidden" name="fileName" id="fileName" />
 		    <input type="hidden" name="uploadPath" id="uploadPath" />
@@ -81,33 +82,11 @@
 					<label>상품 이름</label>
 				</div>
 				<div class="form_section_content">
-					<input name="product_name">
-					<span id="ck_warn productName_warn">상품이름을 입력 해주세요</span>
+					<input type="text" name="product_name" value="${updateDetail.product_name}">
+					<span id="ck_warn productName_warn">상품이름(수정)을 입력 해주세요</span>
 				</div>
 			</div>
-			<div clas="form_section">
-				<div class="from_section_title">
-					<label>상품 분류</label>
-				</div>
-				<div class="form_section_content">
-					<select name="category_code">
-						<!-- 
-							<input id="categoryName_input"  readonly="readonly">
-							<input id="categoryCode_input"  name="categoryCode" type="hidden">
-							<button class="categoryName_btn">분류 선택</button>
-							<span id="ck_warn categoryName_warn">분류를 선택해주세요.</span>
-						-->
-						<option value="none" selected>=== 선택 ===</option>
-                    	<option value="01">한식</option>
-                    	<option value="02">중식</option>
-                    	<option value="03">일식</option>
-                    	<option value="04">양식</option>
-                    	<option value="05">이벤트</option>
-						<!--   -->
-					</select>
-					<span id="ck_warn category_code_warn">분류를 선택해주세요.</span>
-				</div>
-			</div>
+			
 			<div class="form_section">
 				<div class="form_section_title">
 					<label>상품가격</label>
@@ -139,26 +118,10 @@
 			</div>
 		</div>
 		
-		<div class="form_section">
-			<div class="form_section_title">
-				<label>상품 이미지</label>
-			</div>
-			<div class="form_section_content">
-			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
-			<!-- <input type="file" id="fileItem" multiple="multiple"  name="uploadFile"> -->	
-				<div id="uploadResult">
-				<!-- 
-					<div id="result_card">
-					<div class="imgDeleteBtn">x</div>
-					<img src="/display?fileName=test.png">
-					</div>
-					 -->																		
-				</div>
-			</div>
-		</div>
+		
 			<div class="btn_section">
-				
-				<button type="submit" id="enrollBtn" class="btn enroll_btn">등록</button>
+			
+				<button type="submit" >수정</button>
 			</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>	
@@ -171,6 +134,13 @@
 <script>
 
  let enrollForm = $("#enrollForm")
+	
+  /*	취소버튼  */
+$("cancelBtn").click(function(){
+
+	location.href="/admin/product_manage"
+
+});
 
 
 /* 등록버튼 */

@@ -82,12 +82,16 @@ public class CustomerBoardController {
 	  public String update(Model model, @PathVariable("cus_no") int cus_no) {
 	  
 	  CustomerBoardVo customerBoardDetail = customerBoardService.customerBoardDetail(cus_no);
-	  model.addAttribute("customerBoardDetail", customerBoardDetail); 
-	  return "board/cusboard/updateView"; }
+	  
+	  model.addAttribute("customerBoardDetail", customerBoardDetail);
+	  
+	  return "board/cusboard/updateView"; 
+	  }
 	  
 	  // 정보공유 게시판 수정등록
 	  
-	  @RequestMapping("/member/customerBoardUpdate") public String updateSuccess(CustomerBoardVo customerBoardVo) throws Exception{
+	  @RequestMapping("/member/customerBoardUpdate") 
+	  public String updateSuccess(CustomerBoardVo customerBoardVo) throws Exception{
 		  customerBoardService.updateCustomerBoard(customerBoardVo);
 	  
 	  	return "redirect:/member/customerboard/" + customerBoardVo.getCus_no(); 
