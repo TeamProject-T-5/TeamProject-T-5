@@ -131,6 +131,8 @@ public interface ProductDao {
 	// 이벤트 상세 페이지
 	public ProductVo eventInfo(int product_number);
 
+	public List<ProductImgVo> mainImgList();
+
 	
 
 	

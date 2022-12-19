@@ -556,11 +556,20 @@
 		  ]]>
 	  </select>
       
-     
-    
-    
-    
+	  <select id="mainImgList" resultType="com.mealkit.product.ProductImgVo">
+        select
+		     product.PRODUCT_NUMBER
+		    ,product.PRODUCT_NAME
+		    ,product.PRODUCT_PRICE
+		    ,product_img.FILENAME
+		    ,product_img.UPLOADPATH
+		    ,product_img.UUID
+  		FROM PRODUCT
+    	left outer JOIN product_img
+    	ON PRODUCT.PRODUCT_NUMBER = product_img.PRODUCT_NUMBER
+    	ORDER BY product_price ASC
       
+      </select>   
 </mapper>
 
 

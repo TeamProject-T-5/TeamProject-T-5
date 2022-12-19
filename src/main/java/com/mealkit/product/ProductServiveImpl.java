@@ -280,6 +280,12 @@ public class ProductServiveImpl implements ProductService {
 				return null;
 			}
 
+			@Override
+			public List<ProductImgVo> mainImgList() {
+				
+				return productDao.mainImgList();
+			}
+
 
 
 

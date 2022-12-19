@@ -142,6 +142,9 @@ public interface ProductService {
 		 
 		 // 카테고리 
 		 public List<ProductCategory> cateList();
+		 
+		 // 메인화면 TOP3 출력
+		 public List<ProductImgVo> mainImgList();
 	
 
 

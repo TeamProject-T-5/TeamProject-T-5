@@ -300,6 +300,12 @@ public class ProductDaoImpl implements ProductDao {
 			return null;
 		}
 
+		@Override
+		public List<ProductImgVo> mainImgList() {
+			
+			return sqlSession.selectList("Product.mainImgList");
+		}
+
 
 
 
