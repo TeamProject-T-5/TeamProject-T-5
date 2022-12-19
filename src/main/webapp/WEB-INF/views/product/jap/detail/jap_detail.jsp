@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>물품 상세 페이지</title>
 <link rel="stylesheet" href="css/product/jap/jap_detail.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
 
 <style>
@@ -100,7 +103,10 @@
 			top: 60px;
 			left: 260px;
 		}
-		
+		img {
+			width: 400px;
+			height: 400px;
+		}
 		</style>
 </head>
 
@@ -108,34 +114,42 @@
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<div class="info">
-		<img src="/img/Korean_Food/Gopchang/곱창전골.jpg">
+		<div class="image_wrap" data-filename="${japInfo.fileName}"
+			data-productnumber="${japInfo.product_number}"
+			data-path="${japInfo.uploadPath}" 
+			data-uuid="${japInfo.uuid}">
+			<img>
+		</div>
 		<form>
-		<ul>
-			<p>상품명	: ${japInfo.product_name}	</p>
-			<p>가격	: ${japInfo.product_price}:	</p> 
-			<p>수량선택:
-		
-		
-        			<select name="product_stock">
-			            <option value="01">1</option>
-			            <option value="02">2</option>
-			            <option value="03">3</option>
-			            <option value="04">4</option>
-			            <option value="05">5</option>
-			            <option value="06">6</option>
-			            <option value="07">7</option>
-			            <option value="08">8</option>
-			            <option value="09">9</option>
-			            <option value="10">10</option>
-			        </select>
-			     <p><button><a href="../cart/cart.html">장바구니 담기</a></button>
-			     <button><a href="../purchase/purchase.html">결제하기</a></button>
-			</p>
-			<textarea style="width: 675px; height: 200px;" readonly>
+			<ul>
+				<p>상품명 : ${japInfo.product_name}</p>
+				<p>가격 : ${japInfo.product_price}:</p>
+				<p>
+					수량선택: <select name="product_stock">
+						<option value="01">1</option>
+						<option value="02">2</option>
+						<option value="03">3</option>
+						<option value="04">4</option>
+						<option value="05">5</option>
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<option value="10">10</option>
+					</select>
+				<p>
+					<button>
+						<a href="../cart/cart.html">장바구니 담기</a>
+					</button>
+					<button>
+						<a href="../purchase/purchase.html">결제하기</a>
+					</button>
+				</p>
+				<textarea style="width: 675px; height: 200px;" readonly>
 ${japInfo.product_desc}
 </textarea>
-		</ul>
-		</form>	
+			</ul>
+		</form>
 	</div>
 	<div id= "comment">
 		<span>댓글</span>
@@ -155,4 +169,39 @@ ${japInfo.product_desc}
 	</div>
 					
 </body>
+<script>
+
+	$(document).ready(
+			function() {
+
+				/* 이미지 삽입 */
+				const bobj = $(".image_wrap");
+
+				if (bobj.data("productnumber")) {
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					const fileCallPath = encodeURIComponent(uploadPath + "/s_"
+							+ uuid + "_" + fileName);
+
+					bobj.find("img").attr('src',
+							'/display?fileName=' + fileCallPath);
+				} else {
+					bobj.find("img")
+							.attr('src', '/resources/image/nothing.png');
+				}
+
+			});
+	//$(document).ready(function(){
+	// 수량 버튼 조작
+	let quantity = $(".quantity_input").val();
+	$(".plus_btn").on("click", function() {
+		$(".quantity_input").val(++quantity);
+	});
+	$(".minus_btn").on("click", function() {
+		if (quantity > 1) {
+			$(".quantity_input").val(--quantity);
+		}
+	});
+</script>
 </html>
