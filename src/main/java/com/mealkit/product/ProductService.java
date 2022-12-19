@@ -16,6 +16,13 @@ public interface ProductService {
 	 public List<ProductVo> productGetList();
 	 
 	 
+	 //상품 수정
+	 public void Modifyproduct(ProductVo productVo);
+	 
+	 //상품 수정 정보
+	 public ProductVo updateDetail(int product_number);
+		
+	 
 	 // 상품 삭제	
 	 public void deleteproduct(int product_number);
 	 
@@ -142,7 +149,8 @@ public interface ProductService {
 		 
 		 // 카테고리 
 		 public List<ProductCategory> cateList();
-	
+
+		
 
 
 	

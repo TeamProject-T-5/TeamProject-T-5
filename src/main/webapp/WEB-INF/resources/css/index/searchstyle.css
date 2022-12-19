@@ -27,7 +27,7 @@
 	  .search{
 	  		position: relative;
 	  		top: 150px;
-	  		left: 520px;
+	  		left: 430px;
 	  		width: 600px;
 	  		height: 50px;
 	  }
@@ -95,11 +95,39 @@
 		
 		button{
 	  	position: relative;
-	  	left: 1175px;
+	  	left: 1085px;
 	  	top: 150px;
 	  	background-color:#1673ea;
 	  	width: 50px;
 	  	height: 50px;
 	  	border: none;
 	  	cursor: pointer;
+	  	}
+	  	
+	  	img{
+	  		position: relative;
+	  		left: 50%;
+	  		top: 100px;
+	  		width: 225px;
+	  		height: 225px;
+	  	}
+	  	
+	  	.image_wrap{
+	  		position: relative;
+	  		left: 25%;
+	  		top: 100px;
+	  		float: left;
+	  	}
+	  	
+	  	.price{
+	  		position: relative;
+   			left: 225px;
+    		top: 120px;
+	  	}
+	  	
+	  	.image_wrap a{
+	  		position: relative;
+	  		right: 7px;
+	  		top: 200px;
+	  		text-decoration: none;
 	  	}

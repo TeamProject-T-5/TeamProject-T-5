@@ -46,6 +46,24 @@ public class ProductServiveImpl implements ProductService {
 		});
 		
 	}
+	
+	//상품 수정
+	@Override
+	public void Modifyproduct(ProductVo productVo) {
+		
+		 productDao.Modifyproduct(productVo);
+	}
+	
+	// 상품수정 정보
+	@Override
+	public ProductVo updateDetail(int product_number) {
+		
+		return productDao.updateDetail(product_number);
+	}
+
+
+
+
 
 	// 이미지 등록
 	@Override
@@ -280,8 +298,7 @@ public class ProductServiveImpl implements ProductService {
 				return null;
 			}
 
-
-
+		
 
 
 

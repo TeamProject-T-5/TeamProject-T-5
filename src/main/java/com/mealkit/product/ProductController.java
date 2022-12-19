@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.mealkit.cusboard.CustomerBoardVo;
 
 
 
@@ -81,11 +84,33 @@ public class ProductController {
 			return "redirect:/admin/product_manage";
 		}
 		
+		// 상품 수정
+		@RequestMapping("/admin/modifyproduct/{product_number}")
+		public String modify(Model model, @PathVariable("product_number") int product_number  ) {
+			
+			
+			 ProductVo updateDetail = productService.updateDetail(product_number);
+			
+			 model.addAttribute("updateDetail", updateDetail);
+			
+			System.out.println(updateDetail);
+			
+			return "admin/modifyproduct";
+		}
 		
+		// 상품수정 포스트
+		@PostMapping("/admin/product_modify")
+		public String modifyPost(ProductVo productVo,int product_number)throws Exception {
+			
+			productVo.setProduct_number(product_number); 
+			  productService.Modifyproduct(productVo);
+			
+			
+			
+			return "redirect:/admin/product_manage";
+		}
 		
-		
-		
-	
+		 
 		
 }
 
