@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 
 	<script>
 		 $(document).ready(function(){
@@ -23,7 +23,7 @@
 	<div class="loginbox">
 <body>
 
-	<h2>회원정보</h2>
+	<h1>회원정보</h1>
 	<form action="/MemberInfoUpdate" method="post"> <!-- 폼액션 정보 변경 -->
 		
 

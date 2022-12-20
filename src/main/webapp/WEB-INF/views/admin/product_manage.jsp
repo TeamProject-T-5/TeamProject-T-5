@@ -12,6 +12,10 @@
 		list-style: none;
 	 }
 
+	tr,td{
+		text-align: center;
+	}
+	
 </style>
 </head>
 <body>
