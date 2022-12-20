@@ -26,7 +26,7 @@
 		    text-align: center;
 		    line-height: 250px;
 		    position: relative;
-		    left: 550px;
+		    left: 580px;
 		    top: 200px;
 		    white-space: nowrap;
 		    table-layout:fixed
