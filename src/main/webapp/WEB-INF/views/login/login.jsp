@@ -26,8 +26,6 @@
 	      <a href="#" onclick="return chk_form()" >로그인</a>
 	      <a href="loginForm2">회원가입</a>
 	      
-	      <button type="button" onclick="#">카카오로 로그인(미구현)</button>
-	      <button type="button" onclick="#">네이버로 로그인(미구현)</button>
 	      <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
 	  	</form>
 	</div>

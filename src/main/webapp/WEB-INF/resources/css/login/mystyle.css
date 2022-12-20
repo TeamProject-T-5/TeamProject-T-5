@@ -19,6 +19,13 @@
 	
 	button{
 		cursor: pointer;
+		background-color: #1673ea;
+	    color: #fff; 
+	    font-size: 14px;
+	    border: none;
+	    width: 50%;
+	    text-align: center;
+	    line-height: 50px;
 	}
 	
 	
@@ -148,9 +155,9 @@
 	    color: #fff; 
 	    font-size: 14px; 
 	    font-weight: bold;
-	    float: left;
 	    text-align: center;
-	    line-height: 50px;   
+	    line-height: 50px; 
+	    float: left;  
 	}
 	
 	#address99 {

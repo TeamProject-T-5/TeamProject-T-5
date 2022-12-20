@@ -14,6 +14,7 @@
 <div class="container">
 	<form action="cart" method="POST">
     <table class="cart__list">
+    	<h1>장바구니</h1>
                     <tr>
                         <th>상품이름</th>
                         <th>수량</th>
@@ -41,7 +42,7 @@
    	 </form>	
     
     <div>
-            <button onclick="javascript:history.back();">이전 페이지로 이동</button>
+            <button class="back_page" onclick="javascript:history.back();">이전 페이지로 이동</button>
     </div>
     </div>
     	
@@ -56,7 +57,7 @@
     		}
     	}
     </script>
-    	<button onclick="cartOrder()" >결제하기</button>
+    	<button class="purchase" onclick="cartOrder()" >결제하기</button>
     
 </body>
 </html>

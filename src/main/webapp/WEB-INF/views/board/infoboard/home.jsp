@@ -14,6 +14,8 @@
 	list-style: none;
 	padding: 6px;
 	float: left;
+	position: relative;
+	left: 35%;
 	}
 </style>
 </head>

@@ -6,7 +6,7 @@
 <head>
 <%@include file="/WEB-INF/views/include/nav2.jsp" %>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 관리 페이지</title>
 <style>
 	table.type01 {
 	  border-collapse: collapse;
@@ -35,13 +35,17 @@
 		padding: 6px;
 		float: left;
 	}
+	
+	h1,h2{
+		text-align: center;
+	}
 </style>
 
 </head>
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<div class="container">
-	<h1>나는 유저관리페이지</h1>
+	<h1>나는 유저 관리 페이지</h1>
     <h2>밀키트 중독자 목록</h2>
     <c:forEach var="member" items="${ userList }">
 	   <table class="type01">
