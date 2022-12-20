@@ -27,9 +27,10 @@
 	  .search{
 	  		position: relative;
 	  		top: 150px;
-	  		left: 430px;
+	  		left: 500px;
 	  		width: 600px;
 	  		height: 50px;
+	  		z-index:100;
 	  }
 	  
 	  .navbar{
@@ -95,7 +96,7 @@
 		
 		button{
 	  	position: relative;
-	  	left: 1085px;
+	  	left: 500px;
 	  	top: 150px;
 	  	background-color:#1673ea;
 	  	width: 50px;

@@ -18,9 +18,13 @@
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
 	
+	<form action="/index/search" method="GET">
+	<input type="text" class="search"  name="keyword" placeholder="상품명을 입력하세요" >
+   <button class="enter" onclick="location.href='../index/search'"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  </form>
 	
-  	<button class="enter" onclick="location.href='../index/search'"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-	<input type="search" class="search" placeholder="상품명을 입력하세요"> 
+  	
 
 	<div class= "kor1">
 	  <c:forEach var="searchresult"  items="${ searchinfo }">        		
