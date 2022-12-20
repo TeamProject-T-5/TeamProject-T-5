@@ -73,7 +73,7 @@
 		    font-weight: bold;
 		    line-height: 50px;
 		    position: absolute;
-    		top: 38%;
+    		top: 37%;
     		left: 50%;
 		    
 		}
@@ -186,22 +186,7 @@
 		</form>	
 		<button class="purchase" onclick="cartOrder()" >결제하기</button>
 	</div>
-	<div id= "comment">
-		<input id= "input" placeholder="댓글을 입력해 주세요.">
-		<button id= "submit">등록</button>
-	</div>
-	<div class="commentlist">
-		<ol>
-			<div>
-				<div class="info">
-					<span class="name">USER1</span><br>
-					<span class="date">2022.11.30 17:27</span>
-				</div>
-			</div>
-			<p class="text">든든하네요</p>			
-		</ol>
-	</div>
-					
+
 </body>
 <script>
 

@@ -74,17 +74,34 @@ span {
 	margin-left: 20px;
 }
 
-.info button {
-	cursor: pointer;
-	width: 25%;
-	margin: 25px 20px;
-	border: none;
-	background-color: #1673ea;
-	color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 50px;
-}
+		button.cart{
+				cursor: pointer; 
+				width: 25%; 
+			    margin: 25px 20px;
+			    border: none;
+			    background-color: #1673ea;
+			    color: #fff; 
+			    font-size: 14px; 
+			    font-weight: bold;
+			    line-height: 50px;
+			    
+		}
+		
+		button.purchase{
+			cursor: pointer; 
+			width: 12%; 
+		    margin: 25px 20px;
+		    border: none;
+		    background-color: #1673ea;
+		    color: #fff; 
+		    font-size: 14px; 
+		    font-weight: bold;
+		    line-height: 50px;
+		    position: absolute;
+    		top: 37%;
+    		left: 50%;
+		    
+		}
 
 input {
 	width: 600px;
@@ -164,7 +181,7 @@ img {
 					<option value="10">10</option>
 				</select>
 			<p>
-				<button>장바구니 담기</button>
+				<button class="cart">장바구니 담기</button>
 							    <script type="text/javascript">
     		function cartOrder(){
     			var result = confirm("${eventInfo.product_price}  ${eventInfo.product_stock}원을 결제하시겠습니까?")
@@ -186,12 +203,7 @@ img {
 			<textarea style="width: 675px; height: 200px;" readonly="readonly">${eventInfo.product_desc}</textarea>
 		</ul>
 	</div>
-	<div id="comment">
-		<span>댓글</span> <input id="input" placeholder="댓글을 입력해 주세요.">
-		<button id="submit">등록</button>
-	</div>
-	<div class="commentlist">
-	</div>
+	<button class="purchase" onclick="cartOrder()" >결제하기</button>
 
 </body>
 <script>

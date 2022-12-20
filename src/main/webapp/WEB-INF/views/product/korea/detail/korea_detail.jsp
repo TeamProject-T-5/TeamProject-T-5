@@ -45,17 +45,35 @@
 	margin-left: 20px;
 }
 
-.info button {
-	cursor: pointer;
-	width: 25%;
-	margin: 25px 20px;
-	border: none;
-	background-color: #1673ea;
-	color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 50px;
-}
+
+	button.cart{
+			cursor: pointer; 
+			width: 25%; 
+		    margin: 25px 20px;
+		    border: none;
+		    background-color: #1673ea;
+		    color: #fff; 
+		    font-size: 14px; 
+		    font-weight: bold;
+		    line-height: 50px;
+		    
+		}
+		
+		button.purchase{
+			cursor: pointer; 
+			width: 12%; 
+		    margin: 25px 20px;
+		    border: none;
+		    background-color: #1673ea;
+		    color: #fff; 
+		    font-size: 14px; 
+		    font-weight: bold;
+		    line-height: 50px;
+		    position: absolute;
+    		top: 37%;
+    		left: 50%;
+		    
+		}
 
 input {
 	width: 600px;
@@ -135,7 +153,7 @@ img {
 						<option value="10">10</option>
 					</select>
 				<p>
-					<button>장바구니 담기</button>
+					<button class="cart">장바구니 담기</button>
 					<form action="/DeleteCart" method="get">
 					    <script type="text/javascript">
     		function cartOrder(){
@@ -159,22 +177,7 @@ img {
 			</ul>
 			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
-		<button onclick="cartOrder()" >결제하기</button>
-	</div>
-	<div id="comment">
-		<span>댓글</span> <input id="input" placeholder="댓글을 입력해 주세요.">
-		<button id="submit">등록</button>
-	</div>
-	<div class="commentlist">
-		<ol>
-			<div>
-				<div class="info">
-					<span class="name">USER1</span><br> <span class="date">2022.11.30
-						17:27</span>
-				</div>
-			</div>
-			<p class="text">든든하네요</p>
-		</ol>
+		<button class="purchase" onclick="cartOrder()" >결제하기</button>
 	</div>
 
 </body>
