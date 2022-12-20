@@ -134,7 +134,7 @@
 		<form id="free_board_re" action="/writeFreeReply" method="post">
 			<input type="hidden" id="free_no" name="free_no" value='${ read.free_no}'   >
 			
-			<input type="hidden" id="free_reply_content  " name="free_reply_content" value="${ readFreeReply.free_reply_content }"  >
+			
 			<input type="hidden" id="member_id " name="member_id" value="${ readFreeReply.member_id }"  >
 			<div class="container"></div>
 		    <h2 class="my-3 border-bottom pb-2">답글등록</h2>
