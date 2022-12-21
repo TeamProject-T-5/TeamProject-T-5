@@ -25,4 +25,6 @@ public interface CartService {
 	public CartVo deleteCart2(int cart_no);
 
 	int getCartSum(Principal principal);
+
+	public void deleteAll(Principal principal);
 }

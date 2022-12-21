@@ -74,4 +74,11 @@ public class CartDaoImpl implements CartDao {
 		return sqlSession.selectOne("Cart.getCartSum", principal.getName());
 	}
 
+	@Override
+	public void deleteAll(Principal principal) {
+		String member_id = principal.getName();
+		sqlSession.delete("Cart.deleteAll", member_id);
+		
+	}
+
 }

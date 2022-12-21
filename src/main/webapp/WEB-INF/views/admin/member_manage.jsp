@@ -33,10 +33,10 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/include/nav.jsp" %>
-	<h1>나는 유저관리페이지</h1>
+	<h1>유저관리페이지</h1>
 	<a href="/">홈으로</a>
 	
-    <h2>밀키트 중독자 목록</h2>
+    <h2>회원 목록</h2>
     <c:forEach var="member" items="${ memberList }">
 	   <table class="type01">
 		<tr>

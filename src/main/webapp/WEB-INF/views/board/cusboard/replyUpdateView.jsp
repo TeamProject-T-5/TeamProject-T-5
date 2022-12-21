@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>댓글 수정</h1>
-	<form action="/admin/customerReplyUpdate" method="GET">
+	<form action="/member/customerReplyUpdate" method="GET">
 		<input type="hidden" name="cus_no" value="${getReplyOne.cus_no}">
 		<input type="hidden" name="customer_reply_no" value="${getReplyOne.customer_reply_no}">
 		<label>수정할 내용 : </label>

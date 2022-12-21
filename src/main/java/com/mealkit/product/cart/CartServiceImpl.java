@@ -75,5 +75,11 @@ public class CartServiceImpl implements CartService {
 
 	}
 
+	@Override
+	public void deleteAll(Principal principal) {
+		cartDao.deleteAll(principal);
+		
+	}
+
 
 }

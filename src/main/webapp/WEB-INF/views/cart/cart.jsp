@@ -12,7 +12,7 @@
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
 <div class="container">
-	<form action="cart" method="POST">
+	<form action="/DeleteCart" method="POST">
     <table class="cart__list">
     	<h1>장바구니</h1>
                     <tr>
@@ -38,7 +38,8 @@
 				<div>총액 : ${cartSum}원</div>
 				</c:if>
 
-
+				<button class="purchase" onclick="cartOrder()" >결제하기</button>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
    	 </form>	
     
     <div>
@@ -57,7 +58,7 @@
     		}
     	}
     </script>
-    	<button class="purchase" onclick="cartOrder()" >결제하기</button>
+    	
     
 </body>
 </html>

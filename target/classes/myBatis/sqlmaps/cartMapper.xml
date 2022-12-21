@@ -82,4 +82,8 @@
 	<select id="getCartSum" resultType="int">      
 		select NVL(sum(cart_total),0) from cart where member_id = #{member_id}
 	</select>
+	
+	<delete id="deleteAll">
+	delete from cart where member_id = #{member_id}
+	</delete>
   </mapper>

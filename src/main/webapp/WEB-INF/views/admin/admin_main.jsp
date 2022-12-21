@@ -16,7 +16,7 @@
 	 
 	.management a{
 		    width: 250px; 
-		    margin: 0px 40px;
+		    margin: 0px 80px;
 		    border: none;
 		    background-color: #1673ea;
 		    color: #fff; 
@@ -26,7 +26,7 @@
 		    text-align: center;
 		    line-height: 250px;
 		    position: relative;
-		    left: 450px;
+		    left: 580px;
 		    top: 200px;
 		    white-space: nowrap;
 		    table-layout:fixed
@@ -43,7 +43,6 @@
 					<div class="admin_main">
 					    <a class="member_manage" href="/admin/userList" >회원관리</a>
 						<a class="product_manage" href="/admin/product_manage" >상품관리</a>
-						<a class="salse_manage" href="#" >매출관리(미구현)</a> 
 					</div>
 			</div>
 	

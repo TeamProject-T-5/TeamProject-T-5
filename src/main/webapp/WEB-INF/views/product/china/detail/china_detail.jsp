@@ -167,7 +167,7 @@
 			    		<form action="/DeleteCart" method="get">
 					    <script type="text/javascript">
     		function cartOrder(){
-    			var result = confirm("${chinaInfo.product_price}  ${chinaInfo.product_stock}원을 결제하시겠습니까?")
+    			var result = confirm("${chinaInfo.product_price} 원을 결제하시겠습니까?")
     				if(result){
     					alert("결제가 완료되었습니다.");
     					location.href = "<c:url value='/DeleteCart' />";

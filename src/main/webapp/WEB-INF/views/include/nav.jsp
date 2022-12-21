@@ -13,7 +13,7 @@
       <sec:authentication property="principal.username" var="user_id" />
         <div id="user_id">${ user_id }님 안녕하세요. </div>	
       	<li><a href="/MemberInfo?member_id=${user_id}">마이페이지</a></li>
-        <li><a href="/cart">장바구니</a></li>
+        <li><a href="/CartList?member_id=${user_id }">장바구니</a></li>
         <li>
         	<form id="frm2" action="/logout" method="post">
         		<a href="#" onclick="return chk_form()" >로그아웃</a>

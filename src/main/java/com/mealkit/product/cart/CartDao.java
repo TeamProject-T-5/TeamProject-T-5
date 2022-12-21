@@ -25,4 +25,6 @@ public interface CartDao {
 
 	int getCartSum(Principal principal);
 
+	void deleteAll(Principal principal);
+
 }

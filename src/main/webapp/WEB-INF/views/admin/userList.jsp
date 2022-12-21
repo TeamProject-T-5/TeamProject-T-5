@@ -45,8 +45,8 @@
 <body>
 <%@include file="/WEB-INF/views/include/nav.jsp" %>
 	<div class="container">
-	<h1>나는 유저 관리 페이지</h1>
-    <h2>밀키트 중독자 목록</h2>
+	<h1>유저 관리 페이지</h1>
+    <h2>회원  목록</h2>
     <c:forEach var="member" items="${ userList }">
 	   <table class="type01">
 		<tr>
@@ -64,7 +64,7 @@
 		    <td>${ member.member_phone   }</td>
 		    <td>${ member.member_insertdate   }</td>
 		    <td>
-		    	<a class="btn btn-danger btn-sm" href="/admin/deleteMember?member_id=${ member.member_id }">꺼져</a>
+		    	<a class="btn btn-danger btn-sm" href="/admin/deleteMember?member_id=${ member.member_id }">추방</a>
 		    </td>
 	  	</tr>
 		</table>

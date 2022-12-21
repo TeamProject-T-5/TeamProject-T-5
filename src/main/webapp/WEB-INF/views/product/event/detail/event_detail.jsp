@@ -184,7 +184,7 @@ img {
 				<button class="cart">장바구니 담기</button>
 							    <script type="text/javascript">
     		function cartOrder(){
-    			var result = confirm("${eventInfo.product_price}  ${eventInfo.product_stock}원을 결제하시겠습니까?")
+    			var result = confirm("${eventInfo.product_price} 원을 결제하시겠습니까?")
     				if(result){
     					alert("결제가 완료되었습니다.");
     					location.href = "<c:url value='/DeleteCart' />";

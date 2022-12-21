@@ -69,7 +69,7 @@ public class CartController {
 	
 	@RequestMapping("/DeleteCart")
 	public String deleteCart(Principal principal) {
-		
+		cartService.deleteAll(principal);
 		
 		return "cart/CartSucccess";
 	}
